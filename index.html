@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>When 10-Year-Olds Ship Real Products: Building an AI-Powered PBL Organization — Rui Li (MarsNavi) · Khan Lab School AIED Summit 2026</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --text: #0f172a;
+      --text-secondary: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --gold: #b45309;
+      --gold-soft: #fef3c7;
+      --radius: 14px;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.72;
+      font-size: 17px;
+    }
+
+    /* Top Sticky Bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+    }
+    .topbar-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-badge {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .nav-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--surface-alt);
+      transition: all 0.15s;
+    }
+    .nav-pill:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* Hero Header */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #fff;
+      padding: 52px 24px 44px;
+      border-bottom: 1px solid #334155;
+    }
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .hero-kicker {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.22;
+      margin: 0 0 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 17.5px;
+      color: #cbd5e1;
+      max-width: 860px;
+      margin: 0 0 26px;
+      line-height: 1.62;
+    }
+    .resource-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 4px;
+    }
+    .res-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 10px;
+      transition: transform 0.12s, background 0.15s;
+    }
+    .res-btn:hover { transform: translateY(-1px); }
+    .res-btn.primary {
+      background: #2563eb;
+      color: #fff;
+      border: 1px solid #60a5fa;
+    }
+    .res-btn.secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+    .chapter-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 40px 42px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow);
+    }
+    @media screen and (max-width: 680px) {
+      .chapter-section { padding: 24px 18px; }
+    }
+    .chapter-eyebrow {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .chapter-title {
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.28;
+      margin: 0 0 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--surface-alt);
+      color: var(--text);
+    }
+    .subhead {
+      font-size: 20px;
+      line-height: 1.38;
+      margin: 34px 0 14px;
+      color: #0f172a;
+      font-weight: 700;
+    }
+    .para-block {
+      margin-bottom: 18px;
+    }
+    .para-block p {
+      margin: 0;
+    }
+
+    /* Bio Card */
+    .bio-card {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 26px;
+    }
+    @media screen and (max-width: 640px) {
+      .bio-card { flex-direction: column; align-items: flex-start; }
+    }
+    .bio-avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      cursor: zoom-in;
+      flex-shrink: 0;
+    }
+    .bio-name {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .bio-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 15.5px;
+      color: var(--text-secondary);
+    }
+    .bio-list li { margin-bottom: 4px; }
+
+    /* Figures */
+    .fig-single {
+      margin: 26px 0;
+      background: #f8fafc;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .fig-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 26px 0;
+    }
+    .fig-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 26px 0;
+    }
+    @media screen and (max-width: 760px) {
+      .fig-grid-2, .fig-grid-3 { grid-template-columns: 1fr; }
+    }
+    .fig-card {
+      margin: 0;
+      background: #f8fafc;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .fig-img-wrap {
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .fig-img-wrap img {
+      max-width: 100%;
+      max-height: 440px;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      cursor: zoom-in;
+      display: block;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+    }
+    figcaption {
+      background: #ffffff;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .wiki-inline-btn {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .wiki-inline-btn:hover {
+      background: #dbeafe;
+    }
+
+    /* Case Cards & Grids */
+    .case-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 22px 0;
+    }
+    .case-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .case-badge {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--gold);
+      background: var(--gold-soft);
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+    .case-title {
+      font-size: 17px;
+      margin: 0 0 10px;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .case-body {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.62;
+    }
+
+    /* 7 Steps Stack */
+    .steps-stack {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0;
+    }
+    .step-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .step-num {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 5px 11px;
+      border-radius: 8px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .step-title {
+      margin: 0 0 6px;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .step-desc {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    /* Timeline Stack */
+    .timeline-stack {
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+      margin: 24px 0 10px 8px;
+      display: grid;
+      gap: 20px;
+    }
+    .timeline-item {
+      position: relative;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 22px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+    }
+    .timeline-stage {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    .timeline-title {
+      margin: 0 0 8px;
+      font-size: 17.5px;
+      color: var(--text);
+    }
+    .timeline-desc {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    .footer-card {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .footer-card h3 {
+      font-size: 26px;
+      margin: 0 0 10px;
+    }
+    .footer-card p {
+      color: #cbd5e1;
+      margin: 0 0 22px;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.92);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 92vh;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Publication-Grade Print CSS */
+    @media print {
+      @page {
+        size: letter;
+        margin: 14mm 14mm 14mm 14mm;
+      }
+      body {
+        background: #ffffff !important;
+        font-size: 13.5px !important;
+        line-height: 1.58 !important;
+        color: #0f172a !important;
+      }
+      .topbar,
+      .resource-bar,
+      .wiki-inline-btn,
+      .lightbox {
+        display: none !important;
+      }
+      .hero {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        padding: 24px 28px !important;
+        border-radius: 12px !important;
+        margin-bottom: 18px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .hero h1 {
+        font-size: 24px !important;
+        margin-bottom: 10px !important;
+      }
+      .hero-sub {
+        font-size: 13.5px !important;
+        margin-bottom: 0 !important;
+        color: #e2e8f0 !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .chapter-section {
+        background: #ffffff !important;
+        border: none !important;
+        border-bottom: 1.5px solid #cbd5e1 !important;
+        border-radius: 0 !important;
+        padding: 16px 0 22px 0 !important;
+        margin-bottom: 18px !important;
+        box-shadow: none !important;
+      }
+      .chapter-eyebrow {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .chapter-title {
+        font-size: 20px !important;
+        margin-bottom: 14px !important;
+        padding-bottom: 8px !important;
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .subhead {
+        font-size: 16px !important;
+        margin: 20px 0 10px !important;
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .bio-card,
+      .fig-single,
+      .fig-card,
+      .fig-grid-2,
+      .fig-grid-3,
+      .case-card,
+      .step-card,
+      .timeline-item,
+      .footer-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .fig-single,
+      .fig-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        margin: 14px 0 !important;
+      }
+      .fig-img-wrap {
+        background: #f8fafc !important;
+        padding: 8px !important;
+      }
+      .fig-img-wrap img {
+        max-height: 240px !important;
+        box-shadow: none !important;
+      }
+      figcaption {
+        font-size: 11.5px !important;
+        padding: 8px 12px !important;
+        background: #f8fafc !important;
+      }
+      .footer-card {
+        padding: 20px 24px !important;
+        margin-top: 20px !important;
+        background: #0f172a !important;
+        color: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-badge">
+        <span class="brand-dot"></span>
+        <span>MarsNavi · Khan Lab School AIED Summit 2026</span>
+      </div>
+      <nav class="nav-pills">
+        <a href="#prologue" class="nav-pill">Prologue</a>
+<a href="#chapter-1" class="nav-pill">1. Three Walls of PBL</a>
+<a href="#chapter-2" class="nav-pill">2. 7-Step Method & Cases</a>
+<a href="#chapter-3" class="nav-pill">3. Commercial World & Grit</a>
+<a href="#chapter-4" class="nav-pill">4. Process Data & Peixi</a>
+<a href="#chapter-5" class="nav-pill">5. 70-Pt Rule & Philosophy</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker">KHAN LAB SCHOOL · AI IN EDUCATION SUMMIT 2026 · MOUNTAIN VIEW, CA · POST-SUMMIT MATERIALS</div>
+      <h1>When 10-Year-Olds Ship Real Products: Building an AI-Powered PBL Organization</h1>
+      <p class="hero-sub">Illustrated post-summit reading companion & slide repository synthesizing both sessions by <strong>Rui Li (Founder of MarsNavi)</strong>—combining the 3 Walls of PBL, our 7-Step Problem-Solving Methodology, 10M+ spoken words of Feishu Wiki process data, real student projects (Warm Tree-Hole, Starfall Route, Friends of Time NYE Broadcast & Xiao Zhuge Hardware), and the 70-Point Baseline Rule.</p>
+      <div class="resource-bar">
+        
+        <a class="res-btn primary" href="downloads/MarsNavi-Khan-AIED-2026-Companion-EN.pdf" target="_blank">
+          📄 Download Illustrated Companion (PDF)
+        </a>
+        <a class="res-btn secondary" href="downloads/session-1-slides.pdf" target="_blank">
+          📊 Session 1 Slide Deck (PDF)
+        </a>
+        <a class="res-btn secondary" href="downloads/session-2-slides.pdf" target="_blank">
+          📊 Session 2 Slide Deck (PDF)
+        </a>
+        <a class="res-btn secondary" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html" target="_blank">
+          🗂️ Interactive Feishu Wiki Process Database ↗
+        </a>
+        
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    
+        <section id="prologue" class="chapter-section">
+          <div class="chapter-eyebrow">PROLOGUE · ORIGIN & OPENING SCENE</div>
+          <h2 class="chapter-title">From a 2014 Wall Prediction to Four 10-Year-Olds at an Adult AI Hackathon</h2>
+          
+                <div class="bio-card">
+                  <img src="assets/figures/speaker_rui_li.png" alt="Rui Li · Founder of MarsNavi" class="bio-avatar" onclick="openLightbox(this.src)" />
+                  <div class="bio-content">
+                    <div class="bio-name">Rui Li · Founder of MarsNavi</div>
+                    <ul class="bio-list"><li>20 years in education in China · 13,000+ hours of classroom teaching; father of two children (ages 14 and 10)</li><li>Chief Designer of the HD Video Course & Dual-Teacher Live Class; author of “The Core of Product”</li><li>Founded MarsNavi in the AI era: bringing kids aged 8–14 together in 6-person online teams for 2.5 hours every week to solve real-world problems and ship real products with AI</li></ul>
+                  </div>
+                </div>
+                <h3 class="subhead">1. Our Starting Point: Why the November 3, 2014 Prediction Waited for the AI Era</h3><div class="para-block"><p>On November 3, 2014, at an education exhibition, I wrote a sentence on the wall: “By November 3, 2024, learning data will replace exam scores as a fair standard for college admissions.” Ten years passed, and honestly, that prediction did not come true on time. Why? Because in traditional classrooms, we only had the final test score. How a child actually thought, argued, weighed trade-offs, and solved problems was a total black box—nobody could record it at scale.</p></div><div class="para-block"><p>When ChatGPT first came out, I looked at my own two children—my son, who is 14, and my daughter, who is 10—and asked myself a parent's question: by the time they graduate from college eight to twelve years from now, what kind of world will they step into? Drilling for standardized test scores will never prepare them for a world where AI can answer every test question in seconds. And at that exact moment, the AI wave made two things possible at once for the first time in history: children aged 8 to 14 can cross technical barriers to build and ship real working products, and our online + AI system can capture their entire thinking and collaboration process naturally. That was the starting point of MarsNavi.</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/wall_2014_prediction.png" alt="Nov 3, 2014 Exhibition Wall: “By Nov 3, 2024, learning data will replace exam scores as a fair standard for college admissions.”" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Nov 3, 2014 Exhibition Wall: “By Nov 3, 2024, learning data will replace exam scores as a fair standard for college admissions.”</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/marsnavi_kids_collab.png" alt="MarsNavi in the AI Era: 8–14-year-old students working with AI in small teams to solve authentic real-world problems." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">MarsNavi in the AI Era: 8–14-year-old students working with AI in small teams to solve authentic real-world problems.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">2. Opening Scene: Four Kids (Ages 9–12, Zero Coding) at an Adult AI Hackathon (#18 / 40+)</h3><div class="para-block"><p>In May 2026, four of our students—aged 9 to 12, elementary schoolers who had never learned programming—entered the OpenClaw Hackathon in Beijing. This was not a youth contest. It was a standard adult hackathon with more than 40 teams of big-tech programmers, product managers, and computer science university students. Our four students were the only kids' team in the entire venue.</p></div><div class="para-block"><p>They didn't build a toy topic to please adults. They built a Youth Stress-Relief Companion Agent designed to help themselves and their classmates handle real emotional pressure from school and family life. And the toughest part of the competition was on the giant screen behind them: the judge at this hackathon was also an AI. That AI judge didn't know they were ten-year-olds and showed zero leniency—throwing round after round of sharp critiques challenging their prompt structure, word limits, and safety boundaries.</p></div><div class="para-block"><p>Those four kids withstood every single round of critique from the AI judge, defended their design, iterated their product on the spot, and finished 18th out of more than 40 adult teams. Even the organizers wrote afterward that these four children operated like a seasoned product team. Why could four kids with zero coding background beat over twenty adult teams? Because with AI, making a prototype run is no longer the bottleneck—the real differentiator is the depth of human thinking before and after generation.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/hackathon_stage_kids.png" alt="Four MarsNavi students (ages 9–12, zero coding background) defending their Youth Stress-Relief Agent on stage before the live AI Judge at the OpenClaw Adult Hackathon—ranking #18 out of 40+ adult developer and PM teams." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">Four MarsNavi students (ages 9–12, zero coding background) defending their Youth Stress-Relief Agent on stage before the live AI Judge at the OpenClaw Adult Hackathon—ranking #18 out of 40+ adult developer and PM teams.</div>
+                    
+                  </figcaption>
+                </figure>
+                
+        </section>
+        
+        <section id="chapter-1" class="chapter-section">
+          <div class="chapter-eyebrow">CHAPTER 1 · BREAKING THE THREE WALLS OF PBL (SESSION 1 · PART 1)</div>
+          <h2 class="chapter-title">Why PBL Was So Hard to Scale—and How AI Breaks the Knowledge, Coach, and Delivery Walls</h2>
+          <div class="para-block"><p>For decades, educators everywhere agreed that Project-Based Learning (PBL) is wonderful, yet almost nobody could run authentic PBL at scale. Why? Because three structural walls stood in the way: the Knowledge Wall (real-world problems cross multiple disciplines, forcing teachers to spend months lecturing on background theory before kids could start), the Coach Wall (every student team picks a different topic, requiring an impossible 'omniscient' teacher who masters every domain and tool in advance), and the Delivery Wall (without coding or engineering skills, children's projects almost always ended as a poster, a slide deck, or a cardboard model rather than a real working product). Today, AI breaks all three walls.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/pbl_three_walls_diagram.png" alt="How AI Breaks the Three Walls of Traditional PBL: On-Demand Cross-Disciplinary Knowledge, 0.5 Prototype First, and Shipping Real-World Results." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">How AI Breaks the Three Walls of Traditional PBL: On-Demand Cross-Disciplinary Knowledge, 0.5 Prototype First, and Shipping Real-World Results.</div>
+                    
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">1. Breaking the Knowledge Wall: Problem-Driven Cross-Disciplinary Inquiry via AI</h3><div class="para-block"><p>Instead of sitting through months of background lectures, our students start straight from a concrete product problem and query AI layer by layer—like giving every six-kid team three or four dedicated graduate teaching assistants. Here are three real examples from our 2026 cohorts:</p></div><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">PSYCHOLOGY · SPRING 2026 (AGES 10–14)</div>
+                      <h4 class="case-title">Children's Dream Analysis Bot: Unpacking Freud into 4 Steps</h4>
+                      <p class="case-body">A team of 10-to-14-year-olds wanted to build a dream-interpretation agent for peers. They read the comic edition of Freud's “The Interpretation of Dreams” and tested DeepSeek, GPT, and Doubao using their own real dreams. With AI's help, they distilled heavy psychoanalytic theory into a clear 4-step workflow in kid-friendly language: (1) repeat the dream, (2) break down dream elements, (3) analyze feelings inside the dream, and (4) connect the dream to real life.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">VET CARE & BUDGETING · SUMMER 2026 (AGES 11–14)</div>
+                      <h4 class="case-title">20,000-Word Cat Care Knowledge Base & Readiness Test Website</h4>
+                      <p class="case-body">To stop people from adopting cats on impulse and abandoning them later, a team aged 11–14 built an interactive website testing whether a user truly has the patience and budget to raise a cat. By interviewing real cat owners and querying AI, they compiled a 20,000-word knowledge base covering ringworm treatment, cats running wild at 3 a.m., prescription cat food, and real veterinary bills.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">BIOLOGICAL OPTICS · WEB APPLICATION</div>
+                      <h4 class="case-title">“World Prism”: Animal Vision Optics & Psychology Simulator</h4>
+                      <p class="case-body">Using DeepSeek for biological optics research and Trae for front-end coding, students investigated how different species perceive color spectra, motion, and depth—shipping a web application that transforms user-uploaded photos into different animals' visual fields and interprets animal psychology.</p>
+                    </div>
+                    </div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/knowledge_wall_dream_cat.jpg" alt="Students testing AI models with real dreams and interviewing pet owners to build cross-disciplinary knowledge bases." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Students testing AI models with real dreams and interviewing pet owners to build cross-disciplinary knowledge bases.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/knowledge_wall_inquiry_en.png" alt="Problem-driven inquiry workflow: starting from a concrete product bottleneck and querying AI layer by layer." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Problem-driven inquiry workflow: starting from a concrete product bottleneck and querying AI layer by layer.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">2. Breaking the Coach Wall: “Do It First” (0.5 Prototype), 50% Tuition to Coaches & Selecting 30–45yo Leaders</h3><div class="para-block"><p>Before AI, the coach was the only source of feedback in the classroom. If the coach hadn't prepared every possible knowledge branch before class, a team would get stuck. With AI, our rule is simple: “Do It First.” Let the kids build a 0.5 prototype with AI and run it right away. Take our Spring 2026 Time-Management Mini-Program team (ages 8–14): they used Coze to combine a Pomodoro timer, “Eat Three Frogs” daily tasks, and pet-egg hatching into a mini-program. The moment they ran that 0.5 prototype, the bugs jumped right out on the screen—users could register repeatedly to farm infinite points, and pet eggs downgraded when leveling up! The coach didn't need to lecture them on product logic; the running prototype gave instant, undeniable feedback, and the kids wrote rules to cap daily tasks and block point-farming themselves.</p></div><div class="para-block"><p>Because AI and running prototypes handle domain knowledge and technical feedback—and our automated Feishu Wiki pipeline eliminates 80% of administrative paperwork—MarsNavi operates with zero traditional middle-office bureaucracy. That organizational efficiency allows us to pay 50% of tuition revenue directly to our coaches. Does less subject-matter prep mean anyone can be a coach? Quite the opposite. Because we refuse to turn coaches into scripted actors following rigid SOPs, our human bar is much higher. We select 30-to-45-year-old leaders—experienced product managers, project leads, and educators—who genuinely love children, have rich real-world problem-solving experience, can hold emotional space through heated team conflicts, and know how to guide with questions without taking over.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/coach_wall_classroom.jpg" alt="Coach Wall broken: running a 0.5 prototype exposes product bugs immediately, freeing 30–45yo coaches to focus on human dynamics, questioning, and team culture." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">Coach Wall broken: running a 0.5 prototype exposes product bugs immediately, freeing 30–45yo coaches to focus on human dynamics, questioning, and team culture.</div>
+                    
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">3. Breaking the Delivery Wall: Shipping Products That Solve Real Enterprise & Broadcast Problems</h3><div class="para-block"><p>With AI, children's work no longer stops at posters or slide decks. In our Beijing camp, two students tackled a real management headache for a restaurant chain: store staff frequently wrote messy, unfocused incident reports after customer complaints or operational losses. The two students read real store archives, compared good reports against bad ones, distilled a clear 4-part reporting standard, and built a live Coze bot that interviews store staff step by step and automatically generates a structured incident report. And in our winter project for China's largest New Year's Eve broadcast, “Friends of Time,” our students designed and shipped 34 regional tribute covers that aired live on the national stage screen before 33 million+ viewers (full story in Chapter 3).</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/delivery_wall_restaurant_bot.png" alt="Enterprise Problem Solved: Two students studied real restaurant store archives, distilled a 4-part incident standard, and shipped a live Coze reporting bot for store staff." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Enterprise Problem Solved: Two students studied real restaurant store archives, distilled a 4-part incident standard, and shipped a live Coze reporting bot for store staff.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/nye_34_covers_live_stage.png" alt="National NYE Broadcast: 34 regional tribute covers designed by MarsNavi students aired live on the “Friends of Time” stage screen." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">National NYE Broadcast: 34 regional tribute covers designed by MarsNavi students aired live on the “Friends of Time” stage screen.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div>
+        </section>
+        
+        <section id="chapter-2" class="chapter-section">
+          <div class="chapter-eyebrow">CHAPTER 2 · THE 7-STEP PBL METHODOLOGY & TWO ONLINE CASES (SESSION 2 · PART 1)</div>
+          <h2 class="chapter-title">Why Kids Must Sketch on Paper Before Touching AI: Our 7-Step Methodology in Action</h2>
+          <div class="para-block"><p>At MarsNavi, no matter what topic a student team chooses—an AI agent, a web game, a website, or smart hardware—every project must go through seven solid steps. Notice a critical rule in our workflow: in Steps 1, 2, and 3, the children are NOT generating their product with AI yet.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/seven_steps_methodology.png" alt="MarsNavi's 7-Step Problem-Solving Methodology: Steps 1–3 on Paper (Consensus, Best Practices, Sketch Design), Step 4 (Build Working MVP with AI), and Steps 5–7 in the Real World (Real Users, Mystery NPC, Formal Showcase)." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">MarsNavi's 7-Step Problem-Solving Methodology: Steps 1–3 on Paper (Consensus, Best Practices, Sketch Design), Step 4 (Build Working MVP with AI), and Steps 5–7 in the Real World (Real Users, Mystery NPC, Formal Showcase).</div>
+                    
+                  </figcaption>
+                </figure>
+                <div class="steps-stack">
+                    <div class="step-card">
+                      <div class="step-num">Step 1</div>
+                      <div class="step-main">
+                        <h4 class="step-title">Consensus on the Project</h4>
+                        <p class="step-desc">Never assigned by the coach. The 6 kids must propose real pain points from their own lives, debate them, and reach genuine team consensus on one problem worth solving.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 2</div>
+                      <div class="step-main">
+                        <h4 class="step-title">Find Best Practices</h4>
+                        <p class="step-desc">Every child researches existing products, competitors, and solutions in the market—analyzing what already works and what is still missing.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 3</div>
+                      <div class="step-main">
+                        <h4 class="step-title">Sketch Product Design on Paper</h4>
+                        <p class="step-desc">Pick up pen and paper to draw the product blueprint, answering Why, What, and How. For example, before making a game, kids must answer 3 questions on paper: (1) Why build this game? (2) What is the core gameplay? (3) How do you win?</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 4</div>
+                      <div class="step-main">
+                        <h4 class="step-title">Make It Run</h4>
+                        <p class="step-desc">Use structured prompts and AI tools (Coze, Trae, DeepSeek, etc.) to build a working MVP where every single teammate contributes a concrete module.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 5</div>
+                      <div class="step-main">
+                        <h4 class="step-title">Get User Feedback</h4>
+                        <p class="step-desc">Every child tests the MVP with real target users around them (classmates, parents, grandmas) and writes down concrete bugs and harsh critiques—not polite compliments.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 6</div>
+                      <div class="step-main">
+                        <h4 class="step-title">Mystery NPC Interview</h4>
+                        <p class="step-desc">Why separate Step 6 from Step 5? In Step 5, kids test with people they know. In Step 6, the coach invites an unfamiliar adult—a real target user or industry expert whom the kids have never met—and the kids must prepare questions and interview them live.</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 7</div>
+                      <div class="step-main">
+                        <h4 class="step-title">Formal Showcase</h4>
+                        <p class="step-desc">Ship the live QR code, web link, or physical product to the public at a formal showcase and reflect on the full journey.</p>
+                      </div>
+                    </div>
+                    </div><h3 class="subhead">Walkthrough 1 · “Warm Tree-Hole” Emotion Companion Bot (Ages 8–10, Full Steps 1–7)</h3><div class="para-block"><p>How do 8-to-10-year-old children actually run these seven steps? Let's walk through “Warm Tree-Hole,” built last autumn by a team of 8-to-10-year-olds—the direct predecessor of the stress-relief agent that later won #18 at the adult hackathon.</p></div><div class="para-block"><p>In Step 1 (Consensus), this team actually took a huge detour. They spent their first five classes discussing a cultural project about the Dunhuang Mogao Caves. By Week 6, the kids realized Dunhuang was too far removed from their daily lives. So they made a bold decision: they scrapped five full weeks of work and started over around a problem they experienced every day—how to comfort a classmate who is upset.</p></div><div class="para-block"><p>In Step 2 (Best Practices & Inquiry), their first idea for comforting someone was simple: “Let's have AI tell a joke!” Immediately, another child pushed back: “If your dad just beat you up, will hearing a joke make you happy?” Everyone agreed that wouldn't work. So they proposed a second rule: “No matter what happens, tell AI to stand unconditionally on the user's side!” They tested that prompt in Doubao. One child typed: “I beat up my classmate today, and I'm still mad.” And the unconditional AI replied: “You did a great job beating him up! Keep going until you feel better!” The kids were stunned. Nine-year-old Guo Mengyao asked a critical question: “What if the user is also partly wrong? If AI blindly takes their side, won't it harm them?” And 9-year-old Peixi added: “If a kid just had a huge fight with their mom and is still furious, telling them to understand their parents right away will only make them angrier.”</p></div><div class="para-block"><p>So in Step 3 (Paper Design), look at Peixi's handwritten sketch below: they designed a two-part product structure combining an “Emotion Wall” with an “AI Tree-Hole.” In Step 4 (Make It Run), after hours of debate, the children wrote five rigorous prompt rules in Coze: (1) Listen to the whole story before responding; (2) Separate the user's feelings from their actions; (3) Leave space for the user to keep talking—never rush to give advice after just one sentence; (4) Stand on an objective angle to distinguish facts from guesses; and (5) Stop immediately when the user doesn't want to talk anymore.</p></div><div class="para-block"><p>In Step 5 (User Feedback), they tested the bot on their classmates and caught two major bugs: the bot suddenly glitched and told a sad student to “Shut up!”, and when a girl complained about her mom, it immediately lectured her like a parent. In Step 6 (Mystery NPC), the coach brought in a Mystery Mom NPC. Talking with that unfamiliar mom helped the kids see both sides of the coin: children need a safe outlet to vent without being judged, while parents genuinely want to understand why their child is upset without prying into their diary. The kids rewrote their prompts to fix both bugs, and in Step 7 shipped the live agent at their formal showcase.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/peixi_emotion_wall_sketch.png" alt="Step 3 Paper Blueprint by 9-year-old Peixi for “Warm Tree-Hole”: designing the Emotion Wall & Tree-Hole structure on paper before building the 5-rule Coze agent." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">Step 3 Paper Blueprint by 9-year-old Peixi for “Warm Tree-Hole”: designing the Emotion Wall & Tree-Hole structure on paper before building the 5-rule Coze agent.</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#peixi-2025" target="_blank">Open in Interactive Feishu Wiki ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">Walkthrough 2 · “Starfall Route” Alien Card-Shooter Web Game (Summer 2026, Full Steps 1–7)</h3><div class="para-block"><p>After seeing an AI chat agent, educators often ask: what if kids want to build something with complex interactive rules, like a playable video game? Let's look at our second full online case from Summer 2026: an HTML5 card-shooter web game called “Starfall Route.”</p></div><div class="para-block"><p>In Step 1 (Consensus), the team hit a deadlock right away: one boy insisted on making a “Three Kingdoms Kill” card game, while another boy insisted on an alien space-shooter game. Instead of arguing endlessly or splitting up, the coach guided them through our 3-3-1 voting method—and the kids decided to fuse both genres together into an “alien invasion card-battle space shooter!”</p></div><div class="para-block"><p>In Steps 2 and 3 (Research & Paper Blueprint), they studied existing card and arcade shooters and sketched their complete game architecture on paper: 3 starter spaceships, 50 progressive difficulty levels, a coin shop, card synthesis, and Boss fights. When they asked AI to draft the opening story, AI generated pages of heavy sci-fi lore. The kids read it and immediately said: “Players come here to shoot aliens—who wants to read an essay first?!” and cut the wordy text themselves. In Step 4 (Make It Run), still with zero programming background, they used the AI coding tool Trae to generate and debug the playable 50-level HTML5 game and card artwork.</p></div><div class="para-block"><p>The richest learning happened in Step 5 (User Feedback), when they sent the game link to their parents and classmates. One boy, Shi Fengpei, watched his mom play: she couldn't dodge the bullets in the early levels and died immediately, whereas his classmates found the later levels too easy—and discovered a hilarious bug where a spaceship with zero HP still wouldn't die! So the kids went back to Trae, lowered the bullet speed for Levels 1 to 10 so beginners like Mom could get hooked, ramped up the difficulty after Level 10, and fixed the zero-HP bug. During that fix, AI accidentally rewrote and broke a spaceship mechanic they already loved. That experience taught the kids a golden rule of AI collaboration that they shared with the entire cohort: “When you ask AI to fix a bug, you must explicitly tell it NOT to change the parts that are already fun!” After interviewing a game industry expert NPC in Step 6, they shipped the finished 50-level game in Step 7.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/starfall_route_game_plan.png" alt="Step 5 User Testing & Iteration Plan by 10-year-old Shi Fengpei for “Starfall Route”: logging Mom's and classmates' playtest feedback and planning the Levels 1–10 bullet-speed adjustment." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">Step 5 User Testing & Iteration Plan by 10-year-old Shi Fengpei for “Starfall Route”: logging Mom's and classmates' playtest feedback and planning the Levels 1–10 bullet-speed adjustment.</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#aliengame" target="_blank">Open in Interactive Feishu Wiki ↗</a>
+                  </figcaption>
+                </figure>
+                
+        </section>
+        
+        <section id="chapter-3" class="chapter-section">
+          <div class="chapter-eyebrow">CHAPTER 3 · ENTERING THE COMMERCIAL WORLD: REJECTION, EASY TOOLS & GRIT (SESSION 2 · PART 2)</div>
+          <h2 class="chapter-title">What Happens When 10-Year-Olds Face Real Commercial Rejection—and the Trap of Easy Enterprise Tools</h2>
+          <div class="para-block"><p>In our regular online classes, the users are classmates, moms, and grandmas. What happens when our students take this 7-step methodology out of the classroom and step directly into the adult commercial world? In the real commercial world, two things get tested to the limit: first, what happens when you spend a full month on Steps 1 to 4, pitch your work to a real commercial client, and get rejected on the spot? Second, what happens when a hardware company hands you an enterprise AI tool so easy that you are tempted to skip Steps 1, 2, and 3 altogether?</p></div><h3 class="subhead">Commercial Test 1 · “Friends of Time” New Year's Eve Keynote: Flat-Out Rejection & Agile Pivot to 34 Live City Covers</h3><div class="para-block"><p>Every New Year's Eve, tens of millions of viewers across China watch Luo Zhenyu's live “Friends of Time” keynote. Last winter, we brought two teams of our students (ages 8–12) to take on a real task for this national broadcast. Following Steps 1 to 4, the kids worked for over a month on two proposals: one team designed “Personalized Polygon Tickets,” where the ticket border changed shape based on how many years an audience member had used the Dedao app—from a triangle to a square, all the way to an 11-sided polygon; a second team used AI to code an animated front-end web demo for the theme “The World in the Next 1,000 Days.” Two boys, Zhang Jiaqi and Liu Tianshu, even wrote a two-page handwritten letter to the keynote directors explaining how they studied over a thousand ticket designs for three weeks.</p></div><div class="para-block"><p>Then I took the kids to Dedao headquarters to pitch their work in person to the New Year's Eve Command Center. Many people assume: “They're 10-year-old kids—surely the adults will pat them on the head and praise them.” That is not what happened. After the kids finished presenting their slides, the directors rejected their proposal on the spot for three sharp commercial reasons: (1) sorting users by attribute on personalized tickets risked slapping labels on users, which violated the brand's core values; (2) it was already early December—both physical printing and online ticketing systems were locked, so there was simply not enough time; and (3) the web animation was just a visual demo without solid operational logic. Over a month of hard work was rejected right there in the conference room.</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/nye_handwritten_letter_p1.png" alt="Page 1 of the handwritten pitch letter by Zhang Jiaqi & Liu Tianshu to the “Friends of Time” NYE Keynote directors after studying 1,000+ ticket designs." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Page 1 of the handwritten pitch letter by Zhang Jiaqi & Liu Tianshu to the “Friends of Time” NYE Keynote directors after studying 1,000+ ticket designs.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/nye_handwritten_letter_p2.png" alt="Page 2 of the students' handwritten letter detailing their polygon ticket concept—which was rejected on the spot due to brand-labeling risk and locked Dec timelines." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Page 2 of the students' handwritten letter detailing their polygon ticket concept—which was rejected on the spot due to brand-labeling risk and locked Dec timelines.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>When the directors rejected the proposal, I sat right there in the room and kept a poker face. I didn't say a word to plead for the kids or comfort them—because in authentic PBL, there are no backdoor favors. If a client says no, it is a real no. Think about how old we were the first time a boss or client rejected our month-long proposal flat out—probably 22, 25, or 30. Our kids experienced that exact moment at age 9 and 10. Yet instead of crying or quitting, the children immediately asked the directors: “If the ticket plan doesn't work, what else can we do for the keynote?”</p></div><div class="para-block"><p>Right then, Luo Zhenyu was filming a series of short tribute videos called “Calling Out to All Regions” across China, and the post-production regional cover art was still needed urgently. The kids immediately let go of their month of sunk cost on the tickets, shouted “We'll take it!”, and threw themselves into high-intensity AI cover design under a strict broadcast deadline. On New Year's Eve, all 34 provincial and city covers designed by these children went live on the national stage screen, watched by over 33 million people—teaching them a lesson no textbook can convey: in the real world, “not having enough time is a fatal flaw.”</p></div><h3 class="subhead">Commercial Test 2 · “Xiao Zhuge” Story Machine at Jollybubu: The Trap of Skipping Steps 1–3, Zero Sales & True Resilience</h3><div class="para-block"><p>Now let's look at the second test in the commercial world: what happens when an enterprise AI tool is so powerful and easy that kids skip Steps 1, 2, and 3 altogether? In Summer 2026, five students from our L3 cohort (ages 10–11, including Peixi and Liu Tianshu) entered a real AI hardware company in Beijing called Jollybubu for a five-day intensive studio. Working inside the company's glass conference room, they were given full access to the hardware platform and a stack of programmable NFC “White Cards”—blank smart cards that trigger AI characters and voice stories the instant you tap them on the story machine base.</p></div><div class="para-block"><p>The moment our five kids got those NFC White Cards on Day 1, they were thrilled. Because the tool was so easy, they immediately started generating characters, writing scripts, and testing AI voices—throwing Step 1 (Consensus), Step 2 (Best Practices), and Step 3 (Paper Design) completely out the window! They decided to adapt the 120 chapters of “Romance of the Three Kingdoms” into 50 audio episodes (5 kids, 10 episodes each) and used AI to generate the first batch in a single afternoon. Then they put the 50 episodes together and listened: it was a total disaster. Some episodes were long, some were short; language styles clashed wildly; even character settings contradicted each other. That revealed a brutal truth of the AI era: the easier the AI tool is, the easier it creates the illusion that because the prototype is running, the project is finished.</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/jollybubu_hardware_war_room.jpg" alt="Five L3 students working inside the glass conference room at AI hardware company Jollybubu in Beijing." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Five L3 students working inside the glass conference room at AI hardware company Jollybubu in Beijing.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiaoshu_paper_first_reflection.png" alt="Handwritten reflection by 11-year-old Liu Tianshu after the Day 1 failure: “Sketch on paper first, then let AI help.”" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Handwritten reflection by 11-year-old Liu Tianshu after the Day 1 failure: “Sketch on paper first, then let AI help.”</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>After hitting that wall on Day 1, the five kids had to stop generating and go all the way back to Steps 2 and 3. They studied how top audio creators like “Uncle Kai Tells Stories” tell the Three Kingdoms, and forced themselves to answer the core question: “With so many Three Kingdoms stories already on the market, why would any child listen to our version?” Through intense debate in Step 3, they designed an original IP on paper called “Xiao Zhuge” (Little Zhuge): a modern child who loves reading “Romance of the Three Kingdoms” falls asleep while reading Chapter 14, travels into the book in a dream, experiences the battles through Zhuge Liang's first-person perspective, and finally wakes up back in his bedroom. They unified the length, tone, and character relationships across all 50 episodes, added an Episode 51 where Xiao Zhuge reflects on the entire book, and taught themselves 3D modeling and 3D printing in Step 4 to fabricate the physical NFC figurine. As 11-year-old Liu Tianshu wrote on his reflection sheet: “Sketch on paper first, then let AI help.” That rule wasn't memorized from a teacher's slide—it was earned through failure.</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiao_zhuge_story_wall.png" alt="Returning to Steps 2–3 on paper: unifying the 50-episode + Ep. 51 “Xiao Zhuge” Chapter 14 dream-travel narrative on the conference room wall." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Returning to Steps 2–3 on paper: unifying the 50-episode + Ep. 51 “Xiao Zhuge” Chapter 14 dream-travel narrative on the conference room wall.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiao_zhuge_3d_cad_model.png" alt="Step 4 Hardware MVP: the 3D-modeled and 3D-printed “Xiao Zhuge” figurine with an embedded NFC chip." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Step 4 Hardware MVP: the 3D-modeled and 3D-printed “Xiao Zhuge” figurine with an embedded NFC chip.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>Then came Step 5: taking the working “Xiao Zhuge” story machine downstairs to a public park to test and sell it to real children and parents. In the playground, reality hit them again: kids at the park wanted to run around on the slides rather than sit still for an audio story, and when a few polite kids listened briefly and said “it's pretty good,” our students realized that polite praise is not real purchasing demand. Across those five days, the five kids hit a new wall every single day. At their lowest point in the conference room, they turned to the coaches and camera crew and said something unforgettable: “Coaches, can all the adults please step outside? Give us some space so we can quiet down and figure this out ourselves.” Our coaches walked out and waited outside the glass room for two full hours while those five ten-year-olds argued, wiped their tears, and worked out a new plan on their own. In a traditional classroom, letting kids spend two hours resolving a crisis looks slow—but in authentic education, slow is quick.</p></div><div class="para-block"><p>What was the commercial result after five full days? Zero units sold. Not a single one. Yet did the children give up? No. In their final reflection, 10-year-old Peixi pinpointed the exact reason parents didn't buy: “For a children's product, it has to be fun for the kid, and useful for the parent—we didn't give parents a strong enough reason to pay.” And all five kids told us: “Even with zero sales, we still give 100% effort—and in the autumn semester, we want to stay together and keep building Xiao Zhuge!” That is what Jensen Huang calls resilience—and you can never cultivate that resilience through one-click generation in a classroom simulation.</p></div><div class="fig-grid-3">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/peixi_park_interview.jpg" alt="Peixi interviewing an 8-year-old girl and parents in the public park—distilling the rule: “Fun for kids, useful for parents.”" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Peixi interviewing an 8-year-old girl and parents in the public park—distilling the rule: “Fun for kids, useful for parents.”</div>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiaoshu_park_testing.jpg" alt="Liu Tianshu testing the “Xiao Zhuge” NFC story machine with children in the park playground." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Liu Tianshu testing the “Xiao Zhuge” NFC story machine with children in the park playground.</div>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiaoshu_kwl_sheet.png" alt="Liu Tianshu's handwritten KWL & 4F reflection sheet from the 5-day hardware studio." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Liu Tianshu's handwritten KWL & 4F reflection sheet from the 5-day hardware studio.</div>
+                      </figcaption>
+                    </figure>
+                    </div>
+        </section>
+        
+        <section id="chapter-4" class="chapter-section">
+          <div class="chapter-eyebrow">CHAPTER 4 · AI-DRIVEN PBL PROCESS DATA & PEIXI'S 7 TERMS (SESSION 1 · PART 2)</div>
+          <h2 class="chapter-title">10 Million Spoken Words in Feishu Wiki: How Online + AI Makes Process Management Simple</h2>
+          <div class="para-block"><p>In traditional offline classrooms, group discussions vanish into thin air the moment class ends. How did we turn the black box of PBL into a structured, searchable longitudinal archive without exhausting our coaches? Two factors: Online plus AI.</p></div><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">FACTOR 1 · ONLINE + MULTI-TRACK CAPTURE</div>
+                      <h4 class="case-title">100% Natural Process Capture (80k–150k Words / Session)</h4>
+                      <p class="case-body">In our 2.5-hour online classes on Feishu Meetings, each of the 6 kids speaks into their own microphone, naturally recording separate speaker tracks—80,000 to 150,000 spoken words (~900 speaker slices) per session, plus kids' mid-week small-group meetings. Even in our offline camps, every student table has 3 dedicated audio recorders. Across cohorts, we have accumulated over 10 million words of verbatim classroom dialogue.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">FACTOR 2 · STANDARDIZATION IN THE SYSTEM</div>
+                      <h4 class="case-title">3–5 Minute Automated Feishu Wiki Pipeline (80% Admin Saved)</h4>
+                      <p class="case-body">Our core organizational rule is: standardization stays in the AI system, never on the coach. Within 3 to 5 minutes after a 2.5-hour class ends, the coach drops the Feishu Minutes link into our workspace, and our AI pipeline automatically synthesizes the raw transcript into the Feishu Wiki—saving 80% of admin and prep time. Whenever our Head Coach spots a new coaching insight or common pitfall across classrooms, the Head Coach updates the system prompt so every coach benefits automatically.</p>
+                    </div>
+                    </div><h3 class="subhead">1. Inside the 3–5 Minute Coach Pipeline: Session Debrief, Talk-Ratio Alert & Project Support Kit</h3><div class="para-block"><p>Look at the live English Feishu Wiki screenshot below. Within three to five minutes after class, the system generates two documents side by side. On the left is the Session Debrief: it automatically calculates how much the coach talked—triggering an alert if the coach spoke over 50% of the time (for instance, in our live demo we contrasted a healthy 47% coach talk-ratio session against an 80% session where a coach lectured too much)—checks whether the students sketched on paper before touching AI, and logs every child's exact quotes and actions. On the right is the Project Support Kit: based on the exact bottleneck where the team got stuck today, it gives the coach actionable guiding questions and reference cases for next week's session.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/wiki_3min_split_pipeline.png" alt="Live Feishu Wiki Split View: within 3–5 minutes after class, the AI pipeline generates the Session Debrief (left, tracking coach talk ratio & verbatim student quotes) and next week's Project Support Kit (right)." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">Live Feishu Wiki Split View: within 3–5 minutes after class, the AI pipeline generates the Session Debrief (left, tracking coach talk ratio & verbatim student quotes) and next week's Project Support Kit (right).</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#split" target="_blank">Open in Interactive Feishu Wiki ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">2. Multi-Week Evidence Chain: The 4-Week Stray Pet Recovery Website Trace (May 24 – June 14, 2026)</h3><div class="para-block"><p>Beyond single classes, the Feishu Wiki connects the dots across weeks so any educator can see how AI feedback changes classroom behavior. Look at our four-week trace of the Stray Pet Recovery Website team from May 24 to June 14, 2026: on May 24 (Session 8), the kids wanted to build an all-in-one stray-animal mega-platform, and the coach talked 59% of the time trying to pull them back. Right after class, the AI Session Debrief flagged the 59% coach talk ratio and scope creep, while the Project Support Kit suggested letting the kids compare real lost-pet websites first to narrow their scope. Over the next two weeks (May 31 & June 7), the record shows the exact follow-up: the coach stepped back; the kids compared real lost-cat notices, decided themselves to cut the unmoderated comment section, ran pen-and-paper role-play bug hunting, and solved the post-deletion security problem (10-year-old Ye Yaoze proposed using the last four digits of an ID card as a deletion password before shipping on June 14).</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/wiki_straypet_4week_trace.png" alt="4-Week Project Evolution in Feishu Wiki (May 24 – June 14, 2026): how the May 24 debrief flagged 59% coach talk ratio and guided the Stray Pet Website team to narrow scope and ship." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">4-Week Project Evolution in Feishu Wiki (May 24 – June 14, 2026): how the May 24 debrief flagged 59% coach talk ratio and guided the Stray Pet Website team to narrow scope and ship.</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#straypet" target="_blank">Open in Interactive Feishu Wiki ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">3. End-of-Term 1-on-1 Parent Call Prep Guide & Why Long-Term Retention Reaches 80%+</h3><div class="para-block"><p>At the end of every term, the Feishu Wiki automatically generates a 4-part Parent Call Prep Guide for each child. When our coach calls a parent for a 15-to-25-minute one-on-one debrief, we never offer vague praise like “your child did great this term.” Instead, the coach tells the parent the exact date, the exact scene where their child stood up to resolve a team disagreement, and the exact sentence their child spoke. That concrete process evidence is why our student retention is ~40% from L1 to L2 and over 80% from L2 to L3. Even my own wife was skeptical before our child joined L1—she asked me what the kids were actually learning if they weren't being lectured on coding. After seeing our child's verbatim growth archive and real project work at the end of L1, she became MarsNavi's biggest supporter and insisted our child continue through L2 and L3.</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/wiki_parent_call_prep.png" alt="End-of-Term 1-on-1 Parent Call Prep Guide in Feishu Wiki: backing every 20-minute parent call with exact dates, conflict-resolution scenes, and verbatim student quotes." onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">End-of-Term 1-on-1 Parent Call Prep Guide in Feishu Wiki: backing every 20-minute parent call with exact dates, conflict-resolution scenes, and verbatim student quotes.</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#parentcall" target="_blank">Open in Interactive Feishu Wiki ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">4. Deep Longitudinal Case Study · Peixi's 7 Consecutive Terms in Feishu Wiki (L1 → L3 · 66 Sessions · 11 Projects · 380k Spoken Words)</h3><div class="para-block"><p>What does this data look like when a child grows with us over years? Meet Peixi. She joined MarsNavi at age 9 in Spring 2025 and is now in her seventh consecutive term—66 sessions, 11 projects, over 380,000 spoken words by her alone, and over 1 million words of Wiki documentation:</p></div><div class="timeline-stack">
+                    <div class="timeline-item">
+                      <div class="timeline-stage">STAGE 1 · L1 AUTHORSHIP & EMPATHY (SPRING – AUTUMN 2025)</div>
+                      <h4 class="timeline-title">“Never Let AI Polish Your Words” & Drawing the Emotion Wall</h4>
+                      <p class="timeline-desc">While making a “100,000 Whys” science book in L1, 9-year-old Peixi told her teammates: “Never let AI polish your words—once AI rewrites it, it loses your own tone.” In the elderly companion project, she recorded her own voice for her grandma because “the machine voice feels too cold,” and in Warm Tree-Hole she hand-drew the Emotion Wall to help parents understand children's stress.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                      <div class="timeline-stage">STAGE 2 · L2 REAL-WORLD REJECTION & STRUCTURED LOGIC (WINTER – SPRING 2026)</div>
+                      <h4 class="timeline-title">Separating Reading Attitude vs. Ability & 4-Step Dream Bot</h4>
+                      <p class="timeline-desc">In L2, while building a reading companion bot, she separated “not wanting to read (attitude problem)” from “not understanding the book (ability problem)” on paper before touching AI, and faced her older brother's blunt rejection during testing (“too naggy, I don't want to use it”). In the Spring cohort, she helped unpack Freud's Dream Analysis into a 4-step logic and engaged in a 15-minute live Q&A with our founder.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                      <div class="timeline-stage">STAGE 3 · L3 HARDWARE STUDIO AT JOLLYBUBU (SUMMER 2026)</div>
+                      <h4 class="timeline-title">3D-Modeling “Xiao Zhuge” & “Fun for Kids, Useful for Parents”</h4>
+                      <p class="timeline-desc">At the 5-day Beijing hardware studio inside Jollybubu, Peixi hand-drew and 3D-modeled the “Xiao Zhuge” figurine, interviewed an 8-year-old girl and parents in the park, and after 0 sales in 5 days distilled the core law of children's products: “It has to be fun for the kid, and useful for the parent.”</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                      <div class="timeline-stage">STAGE 4 · L3 MARKET RESEARCH & TEAM LEADERSHIP (AUTUMN 2026)</div>
+                      <h4 class="timeline-title">20-Classmate Offline Survey & Stopping Topic Selection by Drawing Lots</h4>
+                      <p class="timeline-desc">In her 7th term (Autumn 2026 L3), Peixi used her own break time at school to interview 20 classmates offline on youth wellness. When her team deadlocked on choosing a topic and someone suggested drawing lots, she stopped them immediately: “Drawing lots is even worse than voting—if people don't agree from the heart, half the team won't put in real effort.”</p>
+                    </div>
+                    </div>
+        </section>
+        
+        <section id="chapter-5" class="chapter-section">
+          <div class="chapter-eyebrow">CHAPTER 5 · FOUR GROWTH DIMENSIONS, THE 70-PT RULE & AGAINST ONE-CLICK GENERATION (S1 & S2 · PART 3)</div>
+          <h2 class="chapter-title">AI Capability Is Always the 70-Point Baseline: Tools Complete Generation, Only Children Complete the Project</h2>
+          <h3 class="subhead">1. How Children Grow Across Four Dimensions & Open Academic Research Collaboration</h3><div class="para-block"><p>Across our 10 million+ words of verbatim classroom transcripts, we never grade children with multiple-choice tests. Instead, we observe how their real words and decisions evolve across four dimensions—and we are actively opening this longitudinal process database to universities and education researchers worldwide:</p></div><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">DIMENSION 1 · LOGIC</div>
+                      <h4 class="case-title">From Vague 1-Line Wishes to Multi-Step Rules & Edge Cases</h4>
+                      <p class="case-body">In the AI era, the ability to explain a messy problem clearly is more critical than ever. You can see it directly in students' prompts: they move from scattered wishes like “make me happy” to structured workflows, conditional branches, and boundary rules like the 5 listening rules in Warm Tree-Hole.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">DIMENSION 2 · AESTHETICS & TASTE</div>
+                      <h4 class="case-title">“Not a Know-It-All AI” & “It Looks Pieced Together—It Has No Soul”</h4>
+                      <p class="case-body">By aesthetics, we don't mean a pretty UI—we mean blending human personality, perspective, and taste into the work. Like the student who said “our elderly bot cannot act like it knows everything—grandmas don't like that,” Peixi recording her own voice because “machine voices feel too cold,” or Liu Tianshu rejecting an AI draft because “it looks pieced together by AI; it has no soul.” I experienced the same thing myself when I spent 25 hours across three days building a Classical Chinese Poetry music app with AI: AI's first draft is always generic, and true taste comes from rejecting mediocre outputs and pouring your own life understanding into every detail.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">DIMENSION 3 · EMPATHY</div>
+                      <h4 class="case-title">Stepping Out of AI's Sycophancy to Face Grandma's & Brother's Rejection</h4>
+                      <p class="case-body">Because AI always tries to please the user, kids can easily become more self-centered. Authentic PBL pulls them out of themselves: facing a grandma who throws the phone down after one minute (“I don't know how to type”), accepting an older brother calling a reading bot “too naggy,” and compromising with five teammates.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">DIMENSION 4 · AI COLLABORATION</div>
+                      <h4 class="case-title">Calling on AI When Stuck, Yet Questioning & Verifying Its Output</h4>
+                      <p class="case-body">Do children use AI to copy homework lazily, or as a partner to bring bold ideas to life? Our kids know how to call on AI when stuck, yet they never worship it—they fact-check it, guard their own voice, and tell AI explicitly not to overwrite the parts that are already fun.</p>
+                    </div>
+                    </div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/four_dimensions_quotes.png" alt="Verbatim student quotes across the Four Growth Dimensions: Logic, Aesthetics, Empathy, and AI Collaboration." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Verbatim student quotes across the Four Growth Dimensions: Logic, Aesthetics, Empathy, and AI Collaboration.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/wiki_cohort_home.png" alt="MarsNavi Feishu Wiki Research Portal: 10M+ spoken words open for academic collaboration with global universities and schools." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">MarsNavi Feishu Wiki Research Portal: 10M+ spoken words open for academic collaboration with global universities and schools.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">2. Redefining Labor: Why AI Capability Is ALWAYS the 70-Point Baseline</h3><div class="para-block"><p>Why do we insist on training logic, aesthetics, empathy, and collaboration when AI seems so powerful? Because in the AI era, AI's capability is always the 70-point baseline. Why do so many people feel AI is magical? Because we usually test AI on things we don't know how to do ourselves! For example, I don't know how to compose music; if I ask AI to write a company anthem, it sounds amazing to me—that's 70 points. But if you play that AI song to a top songwriter like Jay Chou, he will politely say “it's okay”—it will never win an award. For someone who cannot code, AI code looks like a miracle; for a senior engineering team, it is 70-point code. AI is impressive because it scores 70 points in every single field.</p></div><div class="para-block"><p>Now, how many points will AI score three years from now? 80? 90? 100? No—ALWAYS 70 points. Think of sea level: sea level is elevation zero. Even as global warming makes the sea level rise, sea level is still elevation zero! As models upgrade from GPT-3 to today's frontier models, the 70-point sea level is rising rapidly—and any human work that stays below that 70-point sea level gets drowned. In this new world, any contribution below AI's 70-point baseline has been downgraded from intellectual labor to physical labor. In the past, categorizing accounting receipts, summarizing meeting notes, or looking up basic legal clauses required a human brain, so we called it mental labor. Today, AI does all of that at a 70-point level in seconds. There is a simple test to know whether you or your students are doing intellectual labor or physical labor on a topic: ask AI the question. If you read AI's answer and think, “Wow, that's brilliant! I learned so much!”, then on that topic your level is below 70 points—you are doing physical labor. If you read AI's answer and immediately say, “This completely misses the real problem—doing it this way will cause harm!”, then congratulations: you are above 70 points, and what you bring above 70 points is true intellectual labor.</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/seventy_point_baseline_1.png" alt="Principle 1: AI capability is always the 70-point sea level across domains; as models upgrade, the sea level rises." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Principle 1: AI capability is always the 70-point sea level across domains; as models upgrade, the sea level rises.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/seventy_point_baseline_2.png" alt="Principle 2: Work below the 70-point AI baseline is downgraded to physical labor; only human judgment above 70 points is true intellectual labor." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">Principle 2: Work below the 70-point AI baseline is downgraded to physical labor; only human judgment above 70 points is true intellectual labor.</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">3. Against “One-Click Generation” & The Clear Division of Labor (Child, Coach, AI)</h3><div class="para-block"><p>That is why we stand firmly against “one-click generation.” Before coming to Mountain View, I ran a two-sentence experiment: I typed one sentence into AI (“Build me a Minecraft-style block-building mini-game on a web page”), and when touch controls didn't work on my iPad, I typed a second sentence (“Make it work with touch controls on an iPad”). In two sentences, a playable 3D block-building web game popped out. Imagine if I showed that game to parents and bragged: “Look at the 3D game our students built with AI!” Honestly, that should send chills down our spine. Before AI, if a child typed 10,000 lines of code by hand to build that game, I would praise them to the sky. Today, typing two sentences to generate that game is below 70 points—it requires zero thinking, and praising a child for one-click generation puts their brain to sleep.</p></div><div class="para-block"><p>Look instead at the two handwritten sheets below from our students' real projects—this is what intellectual contribution above 70 points looks like. On the left is 10-year-old Shi Fengpei writing down real user pain points and feature trade-offs on paper (“Play Healthier”) before touching AI to build his game. On the right is 9-year-old Peixi in a reading project: she asked her teammates, “Doubao can already generate a study plan in one click—why should we build one?” And on her sheet, she separated two problems that even adults often conflate: “Doesn't want to read = Attitude problem; Can't understand the book = Ability problem. We must separate the two.”</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/fengpei_play_healthier_sheet.png" alt="10-year-old Shi Fengpei's handwritten “Play Healthier” requirements & trade-off sheet—defining real pain points on paper before touching AI." onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">10-year-old Shi Fengpei's handwritten “Play Healthier” requirements & trade-off sheet—defining real pain points on paper before touching AI.</div>
+                        <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#fengpei" target="_blank">Open in Feishu Wiki ↗</a>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/peixi_reading_attitude_ability.png" alt="9-year-old Peixi's handwritten reading evaluation sheet: questioning 1-click study plans and separating “attitude problems” from “ability problems.”" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">9-year-old Peixi's handwritten reading evaluation sheet: questioning 1-click study plans and separating “attitude problems” from “ability problems.”</div>
+                        <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#peixi-winter" target="_blank">Open in Feishu Wiki ↗</a>
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>In our AI-powered PBL organization, the division of labor is crystal clear: (1) The Child holds direction, aesthetic taste, and final decisions—deciding what problem is worth solving, what counts as good, and how to trade off when the team disagrees; (2) The Coach holds emotional safety, team culture, and live judgment—asking tough questions when kids take shortcuts and holding space when real users reject their work; and (3) The AI System handles on-demand knowledge, 0.5 prototypes, and 80% of classroom data synthesis in the background. Tools complete the generation; only children complete the project.</p></div><h3 class="subhead">4. Summit Live Q&A Highlights: Assessment, Teacher Role Shift & Why User Testing Is at Step 5</h3><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">SUMMIT Q&A 1 · ASSESSMENT & COLLEGE ADMISSIONS</div>
+                      <h4 class="case-title">“With GPS vs. Without GPS” & Buying a Building 10 Years Before the Subway Arrives</h4>
+                      <p class="case-body">An educator asked: when traditional exams still forbid AI, how should schools test students? I shared two thoughts: First, separate assessment into two explicit modes—“Without GPS” (closed-book foundational thinking without AI) and “With GPS” (giving students full access to AI and grading them strictly on whether their problem definition, taste, and final product rise above AI's 70-point baseline). Second, why build longitudinal process data now if college admissions haven't changed yet? Imagine knowing a subway line will open in 10 years: you don't wait until opening day to buy the building next to the station—you build the foundation 10 years early.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">SUMMIT Q&A 2 · HELPING TEACHERS & PARENTS LET GO</div>
+                      <h4 class="case-title">Objective Talk-Ratio Mirrors (47% vs. 80%) & Verbatim Process Evidence</h4>
+                      <p class="case-body">Another educator asked how we stop teachers from over-teaching and parents from intervening. For coaches, we never lecture them with rigid SOPs—instead, the 3–5 minute AI debrief acts as an objective mirror, showing their exact talk ratio (e.g., 47% vs. 80%) and the exact moment they interrupted a student debate. For parents, anxiety comes from a black box; once parents read the verbatim Parent Call Guide showing how their child resolved conflicts and iterated through failure, they naturally step back and trust the child's growth.</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">SUMMIT Q&A 3 · WHY USER FEEDBACK IS AT STEP 5</div>
+                      <h4 class="case-title">Starting from Authentic Shared Pain Points, Testing with a Tangible Prototype</h4>
+                      <p class="case-body">In Session 2, an educator asked why real user testing happens at Step 5 rather than Step 1. For 8-to-12-year-olds, if you ask them to interview strangers in Week 1 with empty hands, the conversation stays abstract and superficial. Instead, Step 1 starts from a real problem the six kids personally experience, and Step 2 studies existing solutions in the market. Once they build a working MVP in Step 4 and hand a playable game or bot to their mom, grandma, or a stranger in Steps 5 and 6, the real-world feedback—like Mom dying in Level 1 or zero sales in the park—hits them ten times harder and drives genuine iteration.</p>
+                    </div>
+                    </div>
+        </section>
+        
+
+    <div class="footer-card">
+      <h3>Bringing Authentic PBL into Every Child's Learning</h3>
+      <p>Rui Li · Founder of MarsNavi · Open to Global School & Academic Research Partnerships<br/>Contact: <strong>lrmarsnavi@gmail.com</strong> · <strong>marsnavi.com</strong></p>
+      <div class="resource-bar" style="justify-content:center;">
+        
+        <a class="res-btn primary" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html" target="_blank">
+          Open Interactive Feishu Wiki Process Database ↗
+        </a>
+        <a class="res-btn secondary" href="downloads/session-1-slides.pdf" target="_blank">
+          Session 1 Slide Deck (PDF)
+        </a>
+        <a class="res-btn secondary" href="downloads/session-2-slides.pdf" target="_blank">
+          Session 2 Slide Deck (PDF)
+        </a>
+        <a class="res-btn secondary" href="mailto:lrmarsnavi@gmail.com">
+          Email Rui Li (lrmarsnavi@gmail.com)
+        </a>
+        
+      </div>
+    </div>
+  </main>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Expanded view" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
