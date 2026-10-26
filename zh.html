@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>当十岁孩子做出真实产品：我们如何打造 AI 驱动的 PBL 机构 — 李睿（烁途 MarsNavi）· 可汗实验学校 2026 AI 教育峰会会后分享读本</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --text: #0f172a;
+      --text-secondary: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --gold: #b45309;
+      --gold-soft: #fef3c7;
+      --radius: 14px;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.72;
+      font-size: 17px;
+    }
+
+    /* Top Sticky Bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+    }
+    .topbar-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-badge {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .nav-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--surface-alt);
+      transition: all 0.15s;
+    }
+    .nav-pill:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* Hero Header */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #fff;
+      padding: 52px 24px 44px;
+      border-bottom: 1px solid #334155;
+    }
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .hero-kicker {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.22;
+      margin: 0 0 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 17.5px;
+      color: #cbd5e1;
+      max-width: 860px;
+      margin: 0 0 26px;
+      line-height: 1.62;
+    }
+    .resource-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 4px;
+    }
+    .res-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 10px;
+      transition: transform 0.12s, background 0.15s;
+    }
+    .res-btn:hover { transform: translateY(-1px); }
+    .res-btn.primary {
+      background: #2563eb;
+      color: #fff;
+      border: 1px solid #60a5fa;
+    }
+    .res-btn.secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+    .chapter-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 40px 42px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow);
+    }
+    @media screen and (max-width: 680px) {
+      .chapter-section { padding: 24px 18px; }
+    }
+    .chapter-eyebrow {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .chapter-title {
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.28;
+      margin: 0 0 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--surface-alt);
+      color: var(--text);
+    }
+    .subhead {
+      font-size: 20px;
+      line-height: 1.38;
+      margin: 34px 0 14px;
+      color: #0f172a;
+      font-weight: 700;
+    }
+    .para-block {
+      margin-bottom: 18px;
+    }
+    .para-block p {
+      margin: 0;
+    }
+
+    /* Bio Card */
+    .bio-card {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 26px;
+    }
+    @media screen and (max-width: 640px) {
+      .bio-card { flex-direction: column; align-items: flex-start; }
+    }
+    .bio-avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      cursor: zoom-in;
+      flex-shrink: 0;
+    }
+    .bio-name {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .bio-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 15.5px;
+      color: var(--text-secondary);
+    }
+    .bio-list li { margin-bottom: 4px; }
+
+    /* Figures */
+    .fig-single {
+      margin: 26px 0;
+      background: #f8fafc;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .fig-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 26px 0;
+    }
+    .fig-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 26px 0;
+    }
+    @media screen and (max-width: 760px) {
+      .fig-grid-2, .fig-grid-3 { grid-template-columns: 1fr; }
+    }
+    .fig-card {
+      margin: 0;
+      background: #f8fafc;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .fig-img-wrap {
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .fig-img-wrap img {
+      max-width: 100%;
+      max-height: 440px;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      cursor: zoom-in;
+      display: block;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+    }
+    figcaption {
+      background: #ffffff;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .wiki-inline-btn {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .wiki-inline-btn:hover {
+      background: #dbeafe;
+    }
+
+    /* Case Cards & Grids */
+    .case-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 22px 0;
+    }
+    .case-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .case-badge {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--gold);
+      background: var(--gold-soft);
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+    .case-title {
+      font-size: 17px;
+      margin: 0 0 10px;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .case-body {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.62;
+    }
+
+    /* 7 Steps Stack */
+    .steps-stack {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0;
+    }
+    .step-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .step-num {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 5px 11px;
+      border-radius: 8px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .step-title {
+      margin: 0 0 6px;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .step-desc {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    /* Timeline Stack */
+    .timeline-stack {
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+      margin: 24px 0 10px 8px;
+      display: grid;
+      gap: 20px;
+    }
+    .timeline-item {
+      position: relative;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 22px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+    }
+    .timeline-stage {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    .timeline-title {
+      margin: 0 0 8px;
+      font-size: 17.5px;
+      color: var(--text);
+    }
+    .timeline-desc {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    .footer-card {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .footer-card h3 {
+      font-size: 26px;
+      margin: 0 0 10px;
+    }
+    .footer-card p {
+      color: #cbd5e1;
+      margin: 0 0 22px;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.92);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 92vh;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Publication-Grade Print CSS */
+    @media print {
+      @page {
+        size: letter;
+        margin: 14mm 14mm 14mm 14mm;
+      }
+      body {
+        background: #ffffff !important;
+        font-size: 13.5px !important;
+        line-height: 1.58 !important;
+        color: #0f172a !important;
+      }
+      .topbar,
+      .resource-bar,
+      .wiki-inline-btn,
+      .lightbox {
+        display: none !important;
+      }
+      .hero {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        padding: 24px 28px !important;
+        border-radius: 12px !important;
+        margin-bottom: 18px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .hero h1 {
+        font-size: 24px !important;
+        margin-bottom: 10px !important;
+      }
+      .hero-sub {
+        font-size: 13.5px !important;
+        margin-bottom: 0 !important;
+        color: #e2e8f0 !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .chapter-section {
+        background: #ffffff !important;
+        border: none !important;
+        border-bottom: 1.5px solid #cbd5e1 !important;
+        border-radius: 0 !important;
+        padding: 16px 0 22px 0 !important;
+        margin-bottom: 18px !important;
+        box-shadow: none !important;
+      }
+      .chapter-eyebrow {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .chapter-title {
+        font-size: 20px !important;
+        margin-bottom: 14px !important;
+        padding-bottom: 8px !important;
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .subhead {
+        font-size: 16px !important;
+        margin: 20px 0 10px !important;
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .bio-card,
+      .fig-single,
+      .fig-card,
+      .fig-grid-2,
+      .fig-grid-3,
+      .case-card,
+      .step-card,
+      .timeline-item,
+      .footer-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .fig-single,
+      .fig-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        margin: 14px 0 !important;
+      }
+      .fig-img-wrap {
+        background: #f8fafc !important;
+        padding: 8px !important;
+      }
+      .fig-img-wrap img {
+        max-height: 240px !important;
+        box-shadow: none !important;
+      }
+      figcaption {
+        font-size: 11.5px !important;
+        padding: 8px 12px !important;
+        background: #f8fafc !important;
+      }
+      .footer-card {
+        padding: 20px 24px !important;
+        margin-top: 20px !important;
+        background: #0f172a !important;
+        color: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-badge">
+        <span class="brand-dot"></span>
+        <span>MarsNavi · Khan Lab School AIED Summit 2026</span>
+      </div>
+      <nav class="nav-pills">
+        <a href="#prologue" class="nav-pill">序章</a>
+<a href="#chapter-1" class="nav-pill">一、打破三堵高墙</a>
+<a href="#chapter-2" class="nav-pill">二、七步法与线上案例</a>
+<a href="#chapter-3" class="nav-pill">三、商业实战与韧性</a>
+<a href="#chapter-4" class="nav-pill">四、过程数据与培西档案</a>
+<a href="#chapter-5" class="nav-pill">五、70分法则与教育哲学</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker">可汗实验学校（KHAN LAB SCHOOL）2026 AI 教育峰会 · 会后完整图文分享读本（中文审阅版）</div>
+      <h1>当十岁孩子做出真实产品：我们如何打造 AI 驱动的 PBL 机构</h1>
+      <p class="hero-sub">本读本将<strong>李睿（烁途 MarsNavi 创始人）</strong>在峰会上的两场主题分享融为一篇完整的图文深度长文：涵盖 AI 打破传统 PBL 三堵高墙、七步解决问题方法论、飞书知识库千万字过程数据管理、孩子们的真实项目全流程（暖心小树洞、《星落航线》网页游戏、《时间的朋友》跨年演讲与“小诸葛”硬件故事机），以及“AI 始终是 70 分基准线”的核心教育哲学。</p>
+      <div class="resource-bar">
+        
+        <a class="res-btn primary" href="index.html">
+          🌐 查看对外纯英文版主页 (Pure English Version)
+        </a>
+        <a class="res-btn secondary" href="downloads/MarsNavi-Khan-AIED-2026-Companion-EN.pdf" target="_blank">
+          📄 下载纯英文版图文读本 (EN PDF)
+        </a>
+        <a class="res-btn secondary" href="downloads/session-1-slides.pdf" target="_blank">
+          📊 第一场 PPT 课件 (PDF)
+        </a>
+        <a class="res-btn secondary" href="downloads/session-2-slides.pdf" target="_blank">
+          📊 第二场 PPT 课件 (PDF)
+        </a>
+        <a class="res-btn secondary" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html" target="_blank">
+          🗂️ 打开交互式英文飞书知识库原件 ↗
+        </a>
+        
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    
+        <section id="prologue" class="chapter-section">
+          <div class="chapter-eyebrow">序章 · 初心与开场：从十年前的预言到成人黑客松</div>
+          <h2 class="chapter-title">从 2014 年墙上的预言，到四个十岁孩子站上成人 AI 黑客松舞台</h2>
+          
+                <div class="bio-card">
+                  <img src="assets/figures/speaker_rui_li.png" alt="李睿（Rui Li）· 烁途（MarsNavi）创始人" class="bio-avatar" onclick="openLightbox(this.src)" />
+                  <div class="bio-content">
+                    <div class="bio-name">李睿（Rui Li）· 烁途（MarsNavi）创始人</div>
+                    <ul class="bio-list"><li>深耕中国教育行业 20 年，累计一线课堂授课超过 13,000 小时；两个孩子的父亲（儿子 14 岁、女儿 10 岁）</li><li>早年主持设计高清视频课与双师直播课，著有产品设计专著《产品之核》</li><li>在 AI 浪潮中创办烁途（MarsNavi）：将 8–14 岁孩子组成不超过 6 人的线上小队，每周与教练进行 2.5 小时真实项目协作，用 AI 解决真实问题、交付真实产品</li></ul>
+                  </div>
+                </div>
+                <h3 class="subhead">一、我们的起点：为什么 2014 年 11 月 3 日的预言等到 AI 时代才真正破局</h3><div class="para-block"><p>2014 年 11 月 3 日，在一场教育展的签名墙上，我写下了一句话：“到 2024 年 11 月 3 日，学习数据将替代考试成绩，成为高考公平的标准。”十年过去了，坦白讲，这个预言没有按时实现。原因很简单：在传统课堂里，我们只能拿到最后那张试卷的分数；至于一个孩子在过程里到底是怎么思考、怎么争论、怎么权衡取舍、怎么解决问题的，完全是一个无法被大规模记录的黑盒。</p></div><div class="para-block"><p>当 ChatGPT 刚出来的时候，我看着自己的两个孩子——14 岁的儿子和 10 岁的女儿——作为一个父亲问了自己一个问题：再过 8 到 12 年，等他们大学毕业走向社会时，面对的会是一个什么样的世界？继续刷题应试，绝对无法帮他们应对一个 AI 几秒钟就能答完所有标准考卷的时代。也恰恰在此时，AI 浪潮在历史上第一次同时打通了两件事：8 到 14 岁的孩子既能跨越技术门槛做出真正能用的产品，同时“线上协作 + AI 系统”又能把他们思考、争论与迭代的完整过程自然地记录下来。这就是烁途（MarsNavi）的起点。</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/wall_2014_prediction.png" alt="2014 年 11 月 3 日教育展签名墙：“2024.11.3 学习数据将替代考试成绩成为高考公平的标准。”" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">2014 年 11 月 3 日教育展签名墙：“2024.11.3 学习数据将替代考试成绩成为高考公平的标准。”</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/marsnavi_kids_collab.png" alt="AI 时代的烁途课堂：8–14 岁孩子组成小队，与 AI 协作解决真实世界的问题。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">AI 时代的烁途课堂：8–14 岁孩子组成小队，与 AI 协作解决真实世界的问题。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">二、开场故事：四个从没学过编程的小学生，在 40 多支成人队伍的 AI 黑客松拿到第 18 名</h3><div class="para-block"><p>2026 年 5 月，我们的四个孩子——9 到 12 岁、完全没学过编程的小学生——去参加了北京的 OpenClaw 黑客松。这不是一场给小朋友办的比赛，而是标准的成人黑客松：同场竞技的 40 多支队伍全是大厂程序员、产品经理和计算机系大学生，全场只有他们一支儿童战队。</p></div><div class="para-block"><p>他们做的不是讨好大人的花架子，而是一个“儿童减压陪伴智能体”——专门帮自己和身边同龄人缓解学业与家庭情绪压力的真实工具。而比赛最残酷的地方就在他们身后的大屏幕上：这场黑客松的评委也是 AI。AI 评委根本不知道台上是几个十来岁的小学生，一点情面都不留，围绕提示词结构、字数限制与安全边界发起了一轮又一轮犀利的追问与质疑。</p></div><div class="para-block"><p>这四个不会写代码的孩子，硬是扛住了 AI 评委一轮接一轮的质疑，现场回应、现场改版迭代，最终在 40 多支成人队伍中拿下了第 18 名。赛后连主办方都专门发文感叹，这几个孩子的开发流程完全是正规军的水准。为什么四个零编程基础的孩子能赢下一半以上的成人团队？因为有了 AI 之后，“把东西跑通”已经不再是门槛，真正拉开差距的，是动手前后的思考深度与解决真问题的方法论。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/hackathon_stage_kids.png" alt="四个 9–12 岁、零编程基础的烁途学员在 OpenClaw 成人黑客松舞台上直面 AI 评委质询，在 40 多支成人开发者与产品经理团队中位列第 18 名。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">四个 9–12 岁、零编程基础的烁途学员在 OpenClaw 成人黑客松舞台上直面 AI 评委质询，在 40 多支成人开发者与产品经理团队中位列第 18 名。</div>
+                    
+                  </figcaption>
+                </figure>
+                
+        </section>
+        
+        <section id="chapter-1" class="chapter-section">
+          <div class="chapter-eyebrow">第一章 · AI 如何打破传统 PBL 的三堵高墙（第一场 · 第一部分）</div>
+          <h2 class="chapter-title">为什么传统 PBL 极难规模化？AI 如何同时打破知识壁垒、教练壁垒与交付壁垒</h2>
+          <div class="para-block"><p>过去几十年，全世界做教育的人都知道 PBL（项目制学习）好，但始终极难大规模推广。原因在于三堵结构性高墙：第一是知识壁垒（真实世界的问题天然跨学科，孩子知识储备不够就无法动手，老师只能先花几个月补背景课）；第二是教练壁垒（每个小组选的方向五花八门，传统模式下要求老师提前精通所有学科与工具，根本招不到那么多全能教练）；第三是交付壁垒（孩子不会写代码、不会做工程，项目做到最后往往只能停留在海报、PPT 或纸壳模型，做不出能用的真产品）。而今天，AI 把这三堵墙同时打破了。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/pbl_three_walls_diagram.png" alt="AI 打破传统 PBL 的三堵墙：按需获取跨学科知识、0.5 原型“先干起来”、交付真实可用的结果。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">AI 打破传统 PBL 的三堵墙：按需获取跨学科知识、0.5 原型“先干起来”、交付真实可用的结果。</div>
+                    
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">一、打破知识壁垒：从真实产品问题出发，用 AI 层层追问跨学科知识</h3><div class="para-block"><p>在我们的课堂上，孩子们不需要先听几个月的理论课，而是直接从一个具体的产品问题出发，带着问题一层层追问 AI——这就像给每个 6 人小队配了三四个随叫随到的研究生助教。来看 2026 年春季与暑期班的三个真实案例：</p></div><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">心理学跨界 · 2026 春季班（10–14 岁）</div>
+                      <h4 class="case-title">少儿解梦智能体：把弗洛伊德《梦的解析》拆解为四步逻辑</h4>
+                      <p class="case-body">一组 10–14 岁的孩子想给同龄人做一个少儿解梦智能体。他们去读了弗洛伊德《梦的解析》漫画版，并拿自己的真实梦境去对比测试 DeepSeek、GPT 和豆包。借助 AI 的层层追问，他们把晦涩的心理学拆解成了同龄人能听懂的“四步解梦逻辑”：① 复述梦境 → ② 拆解元素 → ③ 分析梦里的情绪 → ④ 联系现实生活。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">动物医学与预算 · 2026 暑期班（11–14 岁）</div>
+                      <h4 class="case-title">两万字《真实养猫知识库》与养猫准备度测试网站</h4>
+                      <p class="case-body">为了减少一时冲动养猫又弃养的现象，一组 11–14 岁的孩子做了一个“真实养猫体验网站”，测试用户到底有没有足够的耐心和预算。他们一边采访真实猫主、一边追问 AI，攒出了一份足足两万字的养猫专业知识库，把猫癣怎么治、半夜三点跑酷怎么应对、处方粮和去宠物医院看病到底花多少钱算得明明白白。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">生物视觉光学 · 网页交互应用</div>
+                      <h4 class="case-title">《世界棱镜》：动物视觉光学模拟与心理翻译网页应用</h4>
+                      <p class="case-body">孩子们用 DeepSeek 研究不同动物的视觉光谱与景深结构，再用 AI 编程工具 Trae 开发出了《世界棱镜》网页应用——用户上传一张照片，就能直接看到猫、狗、鸟类等不同动物眼中的世界，并读懂动物行为背后的心理逻辑。</p>
+                    </div>
+                    </div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/knowledge_wall_dream_cat.jpg" alt="孩子们用真实梦境测试大模型，并访谈真实养宠用户搭建跨学科知识库。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">孩子们用真实梦境测试大模型，并访谈真实养宠用户搭建跨学科知识库。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/knowledge_wall_inquiry_en.png" alt="问题驱动的 AI 探究链路：从具体的产品卡点出发，向 AI 层层追问并验证。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">问题驱动的 AI 探究链路：从具体的产品卡点出发，向 AI 层层追问并验证。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">二、打破教练壁垒：“先干起来”（0.5 原型即时反馈）、50% 学费分给教练与选拔 30–45 岁真正的引路人</h3><div class="para-block"><p>没有 AI 的时候，课堂上唯一的反馈来源是老师；老师课前只要有一个分支没备透，小组就会卡壳。有了 AI 之后，我们的原则只有四个字：“先干起来”——让孩子先用 AI 跑出一个 0.5 版本的最小原型。比如 2026 年春季班做“时间管理小程序”的小组（8–14 岁），孩子们用扣子（Coze）把番茄时钟、“三只青蛙”每日任务和孵宠物蛋结合在一起。这个 0.5 原型一跑起来，Bug 当场就跳到了屏幕上：用户重复注册就能无限刷积分，宠物蛋升级甚至会倒退降级！根本不需要教练讲大道理，跑起来的原型直接给出了最真实的反馈，孩子们立刻自己动手写规则限制每日任务次数、堵住刷分漏洞。</p></div><div class="para-block"><p>正因为 AI 和 0.5 原型承担了学科知识供给与技术即时反馈，再加上自动化飞书知识库省去了 80% 的案头杂活，烁途在组织上做到了“零传统中台冗余”，从而能够把 50% 的学费收入直接分给一线教练。教练花在学科备课上的压力大幅降低，是否意味着随便找个人就能当教练？恰恰相反。因为我们绝不用死板的剧本（SOP）去捆绑教练，我们对“人”的标准反而更高了：我们选拔的是 30 到 45 岁、真正喜欢孩子、自己在真实世界里带过项目（如资深产品经理、项目负责人或优秀教育者）、能接住团队冲突、懂得用追问引导而不包办的成年人。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/coach_wall_classroom.jpg" alt="打破教练壁垒：0.5 原型直接暴露真实漏洞，让 30–45 岁的教练把全部精力放在观察人、追问启发与守护团队文化上。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">打破教练壁垒：0.5 原型直接暴露真实漏洞，让 30–45 岁的教练把全部精力放在观察人、追问启发与守护团队文化上。</div>
+                    
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">三、打破交付壁垒：告别纸面海报，交付真正解决企业难题与登上国家级大屏的产品</h3><div class="para-block"><p>有了 AI，孩子们的交付物不再是贴在墙上的海报或自娱自乐的 PPT，而是能真正上线运行、解决实际问题的产品。在我们的北京训练营里，两个孩子接手了一家连锁餐饮企业的真实管理难题：门店员工遇到客诉或经营损失后，写出的事件汇报总是抓不住重点。两个孩子去读了真实的门店档案，对比优秀案例与不合格案例，提炼出清晰的四段式汇报标准，并在扣子（Coze）上做出了一款“门店事件汇报机器人”——一步步采访店员并自动生成合格的规范汇报。而在全国影响力最大的《时间的朋友》跨年演讲项目中，孩子们设计交付的 34 张省市宣传封面直接登上了三千多万观众收看的直播大屏（详见第三章）。</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/delivery_wall_restaurant_bot.png" alt="解决企业真实难题：两个孩子研读连锁餐饮门店真实档案，提炼四段式汇报标准，上线供店员使用的扣子“事件汇报机器人”。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">解决企业真实难题：两个孩子研读连锁餐饮门店真实档案，提炼四段式汇报标准，上线供店员使用的扣子“事件汇报机器人”。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/nye_34_covers_live_stage.png" alt="登上国家级跨年大屏：烁途学员设计交付的 34 张地方宣传片封面在《时间的朋友》跨年演讲现场直播亮相。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">登上国家级跨年大屏：烁途学员设计交付的 34 张地方宣传片封面在《时间的朋友》跨年演讲现场直播亮相。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div>
+        </section>
+        
+        <section id="chapter-2" class="chapter-section">
+          <div class="chapter-eyebrow">第二章 · “扎实”的七步解决问题方法论与两个完整线上案例（第二场 · 第一部分）</div>
+          <h2 class="chapter-title">为什么碰 AI 之前必须先拿纸笔？七步解决问题方法论与两个线上班全流程实录</h2>
+          <div class="para-block"><p>在烁途，无论孩子们选什么方向——做智能体、做网页游戏、做网站还是做智能硬件——每一个项目都必须扎扎实实走完七个步骤。请特别注意我们的一条硬规矩：在前三步里，孩子们还不能直接用 AI 生成最终产品。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/seven_steps_methodology.png" alt="烁途“扎实”的七步解决问题方法论：第 1–3 步纸面推演（共识项目、寻找最佳实践、画出产品设计），第 4 步（用 AI 让项目跑起来），第 5–7 步回到真实世界（拿用户反馈、神秘 NPC、正式结项仪式）。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">烁途“扎实”的七步解决问题方法论：第 1–3 步纸面推演（共识项目、寻找最佳实践、画出产品设计），第 4 步（用 AI 让项目跑起来），第 5–7 步回到真实世界（拿用户反馈、神秘 NPC、正式结项仪式）。</div>
+                    
+                  </figcaption>
+                </figure>
+                <div class="steps-stack">
+                    <div class="step-card">
+                      <div class="step-num">Step 1</div>
+                      <div class="step-main">
+                        <h4 class="step-title">第一步：共识项目</h4>
+                        <p class="step-desc">绝不由老师指定题目。6 个孩子必须从真实生活中提出痛点，经过充分争论与投票，全组共同锚定一个真正值得解决的真问题。</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 2</div>
+                      <div class="step-main">
+                        <h4 class="step-title">第二步：寻找最佳实践</h4>
+                        <p class="step-desc">每个孩子都要动手调研市面上已有的竞品与优秀方案，拆解别人做对了什么、还有什么没解决的痛点。</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 3</div>
+                      <div class="step-main">
+                        <h4 class="step-title">第三步：在纸上画出产品设计</h4>
+                        <p class="step-desc">必须拿起纸笔画出产品草图，回答清楚 Why（为谁解决什么问题）、What（核心功能）、How（交互逻辑）。比如做游戏前必须先在纸上答完三问：① 为什么要做？② 核心玩法是什么？③ 怎么算赢？</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 4</div>
+                      <div class="step-main">
+                        <h4 class="step-title">第四步：用 AI 让项目跑起来</h4>
+                        <p class="step-desc">使用结构化提示词与 AI 工具（扣子、Trae、DeepSeek 等）做出能跑通的最小可用产品（MVP），要求每个组员都有实质贡献。</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 5</div>
+                      <div class="step-main">
+                        <h4 class="step-title">第五步：找身边真实用户拿反馈</h4>
+                        <p class="step-desc">每个孩子找身边的真实目标用户（同学、父母、爷爷奶奶）实测，不仅记好评，更要重点记录差评与真实卡点。</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 6</div>
+                      <div class="step-main">
+                        <h4 class="step-title">第六步：直面陌生“神秘 NPC”</h4>
+                        <p class="step-desc">为什么要把第 6 步和第 5 步分开？第 5 步测的是身边的熟人；第 6 步教练会请来一位孩子们完全不认识的成年人（真实目标用户或行业专家），由孩子自己准备访谈提纲当面深聊。</p>
+                      </div>
+                    </div>
+                    
+                    <div class="step-card">
+                      <div class="step-num">Step 7</div>
+                      <div class="step-main">
+                        <h4 class="step-title">第七步：正式结项发布</h4>
+                        <p class="step-desc">在正式的结项发布会上向公众上线可扫码使用的链接或实体产品，并完成全周期复盘。</p>
+                      </div>
+                    </div>
+                    </div><h3 class="subhead">全流程实录一：“暖心小树洞”情绪陪伴智能体（8–10 岁，完整走完七步法）</h3><div class="para-block"><p>8 到 10 岁的孩子在课堂里到底是怎么跑完这七步的？我们先看去年秋季班一组 8–10 岁孩子做的“暖心小树洞”——它正是前面那个在成人黑客松拿到第 18 名的减压智能体的前身。</p></div><div class="para-block"><p>在第一步“共识项目”时，这组孩子其实走了一段大弯路：前五次课，他们一直围绕“敦煌莫高窟”做文化讨论；到了第六次课，孩子们自己发现这个题目离日常生活太远、太空泛，于是果断决定把前五周的成果全部推倒重来，重新锚定身边每天都会遇到的真痛点——怎么帮不开心的同龄人缓解负面情绪。</p></div><div class="para-block"><p>到了第二步调研时，孩子们起初想：“不开心就让 AI 讲个笑话呗！”马上就有组员反驳：“要是你刚被爸爸揍了一顿，听个笑话能开心得起来吗？”大家一想确实不行，又提出第二个方案：“那就不论发生什么，让 AI 无条件站在用户这边！”他们立刻去豆包上做测试。一个孩子输入：“我今天把同学揍了一顿，现在还不爽。”结果被设定为“无条件站队”的 AI 回复道：“你揍得特别好！是不是还没解气？接着揍！”孩子们当场愣住了。9 岁的郭梦瑶提出了一个关键问题：“要是这件事用户自己也有错呢？AI 无条件站他那边，不是反而害了他吗？”9 岁的培西（李昀齐）也接着想到：“如果一个孩子刚跟妈妈吵完架正在气头上，AI 马上劝他理解父母，只会让他更生气。”</p></div><div class="para-block"><p>于是在第三步“画出产品设计”中（见下方培西的手绘原件），他们在纸上设计了“情绪墙 + 树洞聊天”的双层结构；到了第四步“让项目跑起来”，几个孩子讨论了好几个小时，在扣子（Coze）里写出了五条极其扎实的提示词规则：① 先把整件事听完再回应；② 把用户的“感受”和“做法”分开看；③ 话没说完时留出继续倾诉的空间，绝不听了一句话就急着给建议；④ 站在客观角度分清事实和猜测；⑤ 用户不想聊了就立刻停下来。</p></div><div class="para-block"><p>第五步找同学实测时，他们抓出了两个大 Bug：智能体居然对难过的同学冒出了一句“闭嘴！”，而且在孩子生妈妈气时还是会忍不住替妈妈说教。第六步，孩子们访谈了一位陌生的“神秘妈妈 NPC”，从妈妈口中听到了硬币的另一面：孩子需要安全宣泄的出口，而家长想了解孩子为什么不开心、又怕直接问伤感情。孩子们把这些洞察全部改写进提示词、修好 Bug，在第七步结项发布会上正式上线。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/peixi_emotion_wall_sketch.png" alt="9 岁培西在第三步手绘的“暖心小树洞”情绪墙与树洞交互草图（飞书知识库原件）。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">9 岁培西在第三步手绘的“暖心小树洞”情绪墙与树洞交互草图（飞书知识库原件）。</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#peixi-2025" target="_blank">打开飞书知识库对应原件 ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">全流程实录二：《星落航线》外星人卡牌对战网页游戏（2026 暑期班，完整走完七步法）</h3><div class="para-block"><p>看完对话智能体，很多老师会问：如果孩子想做交互规则更复杂的作品，比如一款真正能玩的小游戏，这套七步法还管用吗？我们来看第二个完整案例：2026 年暑期班孩子们开发的外星人卡牌对战网页游戏《星落航线》。</p></div><div class="para-block"><p>第一步“共识项目”时，小组上来就僵住了：一个男孩非要做《三国杀》式的卡牌对战，另一个男孩非要做外星人打飞机游戏。没有吵架散伙，孩子们通过讨论和“331 投票法”，决定把两个玩法融合在一起——做一个“外星人入侵卡牌对战射击游戏”！</p></div><div class="para-block"><p>第二步和第三步，他们研究了市面上的卡牌与射击游戏，在纸上画出了完整的游戏架构：3 架初始战机、50 个递进关卡、金币商店、抽卡合成与 Boss 战。当时 AI 给他们生成了一大段宏大的宇宙科幻背景故事，孩子们看完自己说：“玩家进来是打飞机的，谁要先看一篇作文啊！”主动把冗长的背景文字砍掉了。第四步，这群同样零编程基础的孩子，用 AI 编程工具 Trae 把 50 关 HTML5 网页游戏和卡牌立绘一步步跑通了出来。</p></div><div class="para-block"><p>最精彩的学习发生在第五步“拿用户反馈”。10 岁的史丰沛把游戏发给妈妈试玩，发现妈妈在前几关根本躲不开密集的子弹，上来就死；而同学试玩时觉得后面不够刺激，还测出了“战机血量归零居然不会死”的大 Bug！于是孩子们制定了清晰的修改计划，回到 Trae 专门把第 1–10 关的子弹速度调慢，让新手妈妈也能玩进去，第 10 关以后再把难度拉高，同时修复了零血不死的漏洞。就在那次改代码时，AI 顺手把他们原本觉得最好玩的一架战机机制给改坏了。孩子们从中总结出了一条跟 AI 协作的黄金铁律，分享给了全班：“让 AI 改 Bug 的时候，一定要明确告诉它——原本好玩的地方千万不能改！”第六步访谈完游戏行业专家 NPC 后，他们在第七步正式发布了这款 50 关的完整网页游戏。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/starfall_route_game_plan.png" alt="10 岁史丰沛为《星落航线》手写的第五步用户测试反馈与修改计划单（飞书知识库原件）。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">10 岁史丰沛为《星落航线》手写的第五步用户测试反馈与修改计划单（飞书知识库原件）。</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#aliengame" target="_blank">打开飞书知识库对应原件 ↗</a>
+                  </figcaption>
+                </figure>
+                
+        </section>
+        
+        <section id="chapter-3" class="chapter-section">
+          <div class="chapter-eyebrow">第三章 · 走进真实商业世界：甲方否决、工具陷阱与韧性（第二场 · 第二部分）</div>
+          <h2 class="chapter-title">当十岁孩子走出温室：在得到跨年演讲遭遇当场否决，在 AI 硬件公司踩中“跳过前三步”的陷阱</h2>
+          <div class="para-block"><p>在常规线上班里，孩子们面对的用户主要是同学、妈妈和奶奶。那如果孩子们带着这套七步方法论走出课堂，直接进入真刀真枪的成人商业世界，会发生什么？在真实商业世界里，有两件事会受到最严酷的检验：第一，当你认认真真花了一个月走完前四步，把方案拿到真实商业甲方跟前，结果被当场毙掉，怎么办？第二，当一家硬件企业把极其顺手的 AI 工具塞到孩子手里，孩子被工具诱惑直接跳过了前三步，又会发生什么？</p></div><h3 class="subhead">商业实战一：《时间的朋友》跨年演讲——一个月方案被当场否决，放下沉没成本紧急交付 34 张直播大屏封面</h3><div class="para-block"><p>每年跨年夜，全中国有几千万人收看罗振宇老师的《时间的朋友》跨年演讲。去年冬天，我们带两个小组的孩子（8–12 岁）去接这个国民级项目的真实需求。孩子们顺着前四步整整准备了一个多月，拿出了两套方案：一组设计了“个性化多边形门票”，按照用户加入得到 App 的年份设计多边形外框，从三角形、四边形一直到十一边形；另一组围绕《未来 1000 天的世界》，用 AI 写前端代码做出了带交互动画的网页 Demo。张佳齐和刘天澍两个男孩还专门给节目组手写了一封两页纸的信，讲述他们如何花三周翻阅上千份票根参考。</p></div><div class="para-block"><p>接着，我带孩子们去得到总部，向跨年演讲指挥部当面汇报。很多人以为：“十来岁的小朋友来提案，大人们肯定摸摸头夸两句就过了吧？”完全不是。孩子们讲完 PPT，指挥部负责人当场就把方案否决了，给出了三条极其犀利的商业理由：① 按用户属性做个性化门票，有给用户贴标签的嫌疑，违背品牌价值观；② 汇报时已是 12 月初，无论线下印票还是线上票务系统全都锁死来不及了；③ 网页动画只有一个视觉 Demo，缺乏扎实的运营闭环逻辑。整整一个多月的心血，在会议室里被原地毙掉。</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/nye_handwritten_letter_p1.png" alt="张佳齐、刘天澍在研究了上千份票根后，致《时间的朋友》跨年演讲节目组的手写信（第一页）。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">张佳齐、刘天澍在研究了上千份票根后，致《时间的朋友》跨年演讲节目组的手写信（第一页）。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/nye_handwritten_letter_p2.png" alt="孩子们手写信的第二页——这套耗时一个多月的门票方案因“给用户贴标签风险”和“12月排期锁死”在现场被直接否决。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">孩子们手写信的第二页——这套耗时一个多月的门票方案因“给用户贴标签风险”和“12月排期锁死”在现场被直接否决。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>当指挥部把方案否掉时，我就坐在会议室里，全程保持扑克脸，一句话都没说——既没有替孩子向甲方求情，也没有上前哄孩子。因为在真实的 PBL 里没有走后门这回事，甲方说不行就是真不行。回想一下，我们自己人生中第一次辛辛苦苦做了一个月的方案被领导或客户当场毙掉是在多少岁？往往是 22 岁、25 岁甚至 30 岁；而我们的孩子在 9 岁、10 岁就亲身经历了这一刻。但孩子们没有哭闹撂挑子，而是当场追问导演组：“如果门票方案不行，跨年演讲还有什么活是我们现在能干的？”</p></div><div class="para-block"><p>恰好当时罗振宇老师正在录制一组“喊话各地”的致敬短视频，后期的省市封面急需制作。孩子们当场放下前面一个月的沉没成本，异口同声接下任务，在严苛的播出死线前高强度迭代。跨年夜当晚，孩子们设计交付的 34 张省市宣传封面全部登上了跨年演讲直播大屏，被全国 3300 多万观众同时看到。正是这次被拒与绝地转向，让孩子们刻骨铭心地体会到了真实商业世界的铁律——“时间不够，就是硬伤。”</p></div><h3 class="subhead">商业实战二：驻场 AI 硬件公司开发“小诸葛”故事机——跳过前三步的惨痛教训、公园实测零销量与真正的韧性</h3><div class="para-block"><p>再看商业世界里的第二种考验：当企业提供的 AI 工具太顺手、太容易出效果，孩子们忍不住直接跳过了前三步，会发生什么？2026 年暑假，我们 L3 小组的 5 个孩子（10–11 岁，包括培西和刘天澍）进驻了北京一家正在开发儿童故事机的 AI 硬件公司 Jollybubu，在公司的玻璃会议室里连续奋战 5 天。企业向孩子们开放了全套硬件平台，并交给他们一批搭载 NFC 芯片的“白卡”——只要往里写入内容、往底座上一贴，故事机立刻就能发声运行。</p></div><div class="para-block"><p>第一天拿到白卡，五个孩子兴奋极了。因为工具太好用了，他们几乎立刻就开始用 AI 生成角色、写故事、试音色——把七步法里的第一步“共识项目”、第二步“寻找最佳实践”、第三步“在纸上画出产品设计”全都抛到了脑后！五个孩子打算把《三国演义》120 回改编成 50 集音频故事（5 个人每人包干 10 集），靠着 AI 一个下午就把第一批故事生成出来了。结果凑在一起一听，彻底傻眼了：有人写得长、有人写得短，语言风格五花八门，连人物设定都互相打架，根本没法作为一个统一的产品拿出手。这件事揭示了一个残酷的真相：AI 工具越好用，越容易让人产生一种幻觉——觉得作品已经跑起来了，项目就已经完成了。</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/jollybubu_hardware_war_room.jpg" alt="五个 L3 学员进驻北京 AI 硬件企业 Jollybubu 的玻璃会议室连续奋战 5 天。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">五个 L3 学员进驻北京 AI 硬件企业 Jollybubu 的玻璃会议室连续奋战 5 天。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiaoshu_paper_first_reflection.png" alt="11 岁刘天澍在踩坑后手写的复盘感悟：“先在纸上画草图，再让 AI 帮忙。”（飞书知识库原件）" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">11 岁刘天澍在踩坑后手写的复盘感悟：“先在纸上画草图，再让 AI 帮忙。”（飞书知识库原件）</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>第一天撞了南墙之后，五个孩子不得不停下生成，老老实实退回到七步法的第二步和第三步。他们拆解“凯叔讲故事”为什么好听，直面最核心的产品问题：“市面上已经有这么多三国故事了，别人凭什么要听我们的版本？”经过第三步的激烈争论，他们在纸上共同设计出了全新原创 IP“小诸葛”：一个喜欢读《三国演义》的现代小孩，读到第 14 回时睡着进入梦境穿越回三国，用诸葛亮的第一人称视角亲历整部三国，最后醒来回到自己的房间。孩子们重新统一了全部 50 集的篇幅、语气和人物关系，专门增加了第 51 集作为读完全书的回望，并在第四步现学 3D 建模与 3D 打印，亲手做出了底部嵌有 NFC 芯片的“小诸葛”实体玩偶。正如 11 岁刘天澍在复盘单上亲手写下的那句话：“先在纸上画草图，再让 AI 帮忙。”这不是老师逼他们背的教条，而是自己踩坑后长出来的认知。</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiao_zhuge_story_wall.png" alt="退回纸面设计：在会议室墙上重新统一“小诸葛”第 14 回梦境穿越主线与 50+1 集故事架构。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">退回纸面设计：在会议室墙上重新统一“小诸葛”第 14 回梦境穿越主线与 50+1 集故事架构。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiao_zhuge_3d_cad_model.png" alt="第四步硬件实作：孩子们自己上手 3D 建模并打印出的“小诸葛”NFC 实体故事机玩偶。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">第四步硬件实作：孩子们自己上手 3D 建模并打印出的“小诸葛”NFC 实体故事机玩偶。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>接着到了第五步：孩子们抱着做好的“小诸葛”故事机跑到公司楼下的公园里，找真实的小朋友和家长测试并尝试推销。到了公园游乐场，现实又给了他们一记重锤：来公园玩滑梯的小朋友满场跑，根本静不下心听音频故事；好不容易有几个小朋友礼貌地听完说一句“挺好的”，孩子们也敏锐地意识到——嘴上客气的“挺好的”，绝不等于真实的需求和买单意愿。那整整五天里，五个孩子每天都在受挫。最艰难的时刻，五个十来岁的孩子在会议室里对教练和摄影师说了一句令人难忘的话：“教练，你们这些成年人能不能都先出去？给我们一点空间，让我们自己安静一下、自己商量决定。”教练们真的走出玻璃会议室，在门外整整等了两个小时，让五个孩子自己在屋里争论、擦干眼泪、重新拿出方案。在传统课堂里，花两个小时等孩子自己化解危机看起来很慢，但在真正的教育里，“慢就是快”（Slow is quick）。</p></div><div class="para-block"><p>五天奋战下来，最终的商业结果是什么？零单——一个也没卖出去。但孩子们放弃了吗？没有。在复盘会上，10 岁的培西一针见血地总结出卖不出去的根本原因：“给孩子的产品，得让小孩觉得好玩、让家长觉得有用——我们没把对家长有用的价值做透。”而且五个孩子坚定地告诉我们：“哪怕零销量，我们依然付出 100% 的努力；秋季班我们还要继续组队，接着把小诸葛做出来！”这就是黄仁勋常说的“韧性”（Resilience）——而这种受挫后自己站起来的韧性，在温室里按一万次“一键生成”也绝对练不出来。</p></div><div class="fig-grid-3">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/peixi_park_interview.jpg" alt="培西在公园现场访谈 8 岁小女孩与家长，提炼出“让小孩觉得好玩，让家长觉得有用”。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">培西在公园现场访谈 8 岁小女孩与家长，提炼出“让小孩觉得好玩，让家长觉得有用”。</div>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiaoshu_park_testing.jpg" alt="刘天澍在公园游乐场找真实小朋友实测“小诸葛”故事机。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">刘天澍在公园游乐场找真实小朋友实测“小诸葛”故事机。</div>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/xiaoshu_kwl_sheet.png" alt="刘天澍在五天硬件营中手写的 KWL 调研表与复盘记录单。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">刘天澍在五天硬件营中手写的 KWL 调研表与复盘记录单。</div>
+                      </figcaption>
+                    </figure>
+                    </div>
+        </section>
+        
+        <section id="chapter-4" class="chapter-section">
+          <div class="chapter-eyebrow">第四章 · AI 驱动的 PBL 过程数据管理与培西连续 7 期成长档案（第一场 · 第二部分）</div>
+          <h2 class="chapter-title">沉淀超 1000 万字真实课堂对话：线上 + AI 如何让过程管理变简单，并记录一个孩子连续 7 期的蜕变</h2>
+          <div class="para-block"><p>在传统的线下教室里，小组讨论一散会就消失在空气里了。我们是如何在不增加教练负担的前提下，把 PBL 的过程黑盒变成结构化、可追溯的成长档案的？靠的就是两件事：线上，加上 AI。</p></div><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">要素一 · 线上天然分轨 + 线下三录音笔</div>
+                      <h4 class="case-title">100% 自然过程留存（单节课 8 万–15 万字逐字稿）</h4>
+                      <p class="case-body">在 2.5 小时的飞书线上会议中，6 个孩子各自对着麦克风发言，天然形成分轨录音——每节课自然留存 8 万到 15 万字逐字稿（约 900 个说话切片），连孩子们周中自己约的小会也完整收录；即便在线下营，我们也会在每个小组桌上放 3 支录音笔。目前我们已经沉淀了超过 1000 万字的真实课堂原话。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">要素二 · 把标准化留在系统里，绝不压在教练身上</div>
+                      <h4 class="case-title">课后 3–5 分钟自动生成飞书知识库（省去教练 80% 案头杂活）</h4>
+                      <p class="case-body">我们有一条核心组织铁律：把标准化留在 AI 系统里，绝不压在教练身上。2.5 小时的课一结束，教练只需把飞书妙记链接丢进工作区，3 到 5 分钟内 AI 流水线就会自动把整堂课的逐字稿整理进飞书知识库，替教练省掉 80% 的案头杂活。每当总教练在巡课复盘中发现新的引导方法或共性卡点，直接迭代后台的系统提示词，就能让全体教练同步受益。</p>
+                    </div>
+                    </div><h3 class="subhead">一、课后 3–5 分钟流水线实景：《课堂复盘》发言占比预警与《项目支持包》</h3><div class="para-block"><p>请看下方英文版飞书知识库的真实界面截图。下课后 3 到 5 分钟内，系统会自动并排生成两份核心文档。左边是《课堂复盘》：它会自动统计教练的发言占比——一旦教练说话超过 50% 就会自动标红预警（比如我们在现场对比过一堂教练占比 47% 的合格课与另一堂教练一个人讲了 80% 的失控课），同时检查孩子们在用 AI 前有没有先在纸上画草图，并完整记录每个孩子的原话与行为切片。右边则是《项目支持包》：系统针对今天小组卡住的具体位置，直接为教练生成下节课的引导追问建议与参考案例。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/wiki_3min_split_pipeline.png" alt="飞书知识库双栏实景：课后 3–5 分钟内自动生成《课堂复盘》（左：含教练发言占比预警与学生原话切片）与下周《项目支持包》（右）。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">飞书知识库双栏实景：课后 3–5 分钟内自动生成《课堂复盘》（左：含教练发言占比预警与学生原话切片）与下周《项目支持包》（右）。</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#split" target="_blank">打开飞书知识库对应原件 ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">二、跨周完整证据链：春季班“寻宠网站”连续四周的过程追踪（2026 年 5 月 24 日 – 6 月 14 日）</h3><div class="para-block"><p>除了单节课的复盘，飞书知识库还能把连续数周的演变串成完整证据链。请看下方 2026 年春季班“寻宠网站”小组从 5 月 24 日到 6 月 14 日连续四周的追踪记录：在 5 月 24 日（第 8 次活动）课上，孩子们想做一个包罗万象的流浪动物大平台，教练急着往回拉，结果一个人说了 59% 的话。课后 AI 复盘当场标红提示教练讲得太多，同时《项目支持包》给出建议：下节课先带孩子对比真实的寻宠网站，靠事实收窄范围。在随后的 5 月 31 日与 6 月 7 日记录中可以清晰看到改变：教练退后了，孩子们通过对比真实寻猫启事，自己决定砍掉容易引发骂战的评论区，在纸上做角色扮演抓 Bug，并由叶曜泽提出用“身份证后四位作为删帖密码”解决信息核实难题，最终在 6 月 14 日顺利上线。从课堂原话、AI 复盘、支持包建议到下一周的真实改变，整条证据链一清二楚。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/wiki_straypet_4week_trace.png" alt="飞书知识库中的四周项目演变追踪（5 月 24 日–6 月 14 日）：从第 8 节课教练发言 59% 预警，到支持包建议收窄范围，再到学生自主砍功能、解密码难题并上线。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">飞书知识库中的四周项目演变追踪（5 月 24 日–6 月 14 日）：从第 8 节课教练发言 59% 预警，到支持包建议收窄范围，再到学生自主砍功能、解密码难题并上线。</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#straypet" target="_blank">打开飞书知识库对应原件 ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">三、期末一对一《结项家长通话准备单》：为什么 L2 到 L3 续费率超过 80%（连我太太都彻底改观）</h3><div class="para-block"><p>每个学期结束时，飞书知识库还会为每个孩子自动生成一份四段式的《结项家长通话准备单》。教练给家长打 15–25 分钟的一对一电话时，从来不说“你家孩子这学期表现挺好”这种空洞的客套话，而是直接对着档案告诉家长：在哪一天、哪一个具体场景下，孩子是怎么站出来化解团队分歧的，当时说的原话是什么。正是这种看得见、摸得着的真实过程证据，让我们的学员从 L1 升 L2 的续费率达到 40% 左右，而从 L2 升 L3 的长周期留存率超过 80%。甚至连我自己的太太，在孩子上 L1 之前都非常怀疑，问我“你们既不教编程课也不刷题，孩子到底在学什么？”结果等 L1 结束看到孩子完整的过程档案与作品状态后，她彻底改观，主动要求让孩子一路读完 L2 和 L3。</p></div>
+                <figure class="fig-single">
+                  <div class="fig-img-wrap">
+                    <img src="assets/figures/wiki_parent_call_prep.png" alt="飞书知识库生成的《结项家长通话准备单》：用精确到日期的冲突解决场景与孩子原话，支撑每一通 20 分钟的深度家长通话。" onclick="openLightbox(this.src)" />
+                  </div>
+                  <figcaption>
+                    <div class="cap-text">飞书知识库生成的《结项家长通话准备单》：用精确到日期的冲突解决场景与孩子原话，支撑每一通 20 分钟的深度家长通话。</div>
+                    <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#parentcall" target="_blank">打开飞书知识库对应原件 ↗</a>
+                  </figcaption>
+                </figure>
+                <h3 class="subhead">四、单人长周期深度档案：培西（Peixi）在飞书知识库里连续 7 期的真实成长轨迹（L1→L3 · 66 次活动 · 11 个项目 · 38 万字个人发言）</h3><div class="para-block"><p>当一个孩子在这套体系里连续成长两年多，她的数据档案呈现出来是什么样子？这是培西（李昀齐）：2025 年春季 9 岁加入烁途，目前正在上连续第 7 期——累计 66 次课堂活动、11 个完整项目，光她一个人在课堂上说的话就超过 38 万字（所在项目知识库沉淀超 100 万字）：</p></div><div class="timeline-stack">
+                    <div class="timeline-item">
+                      <div class="timeline-stage">阶段一 · L1 守护原创语气与共情萌芽（2025 春 – 秋）</div>
+                      <h4 class="timeline-title">“千万别让 AI 润色你的文字”与手绘暖心小树洞情绪墙</h4>
+                      <p class="timeline-desc">在 L1 做《十万个为什么》科普书时，9 岁的培西就提醒队友：“千万别让 AI 润色你的文字，AI 一改就没有你自己的语气了。”做老年陪伴项目时，她嫌机器音太冷，专门录下自己的声音给奶奶用；做“暖心小树洞”时，她在纸上手绘了情绪墙帮父母理解孩子的压力。</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                      <div class="timeline-stage">阶段二 · L2 直面亲哥差评与结构化拆解（2026 寒 – 春）</div>
+                      <h4 class="timeline-title">在纸上区分“阅读态度 vs 阅读能力”与拆解四步解梦逻辑</h4>
+                      <p class="timeline-desc">升入 L2 做陪读智能体时，她在碰 AI 前先在纸上把“不想读（态度问题）”和“读不懂（能力问题）”拆开评估，并在找亲哥哥实测时直面哥哥毫不留情的差评（“太唠叨了，不想用”）；春季班中，她又与队友拆解出四步少儿解梦逻辑。</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                      <div class="timeline-stage">阶段三 · L3 驻场硬件企业开发“小诸葛”（2026 暑期）</div>
+                      <h4 class="timeline-title">手绘 3D 建模“小诸葛”与点透“小孩觉得好玩、家长觉得有用”</h4>
+                      <p class="timeline-desc">在北京 L3 驻场硬件营中，她手绘并 3D 建模了“小诸葛”形象，去公园访谈 8 岁小女孩与家长，并在经历五天零销量后一句话点透儿童产品的本质：“得让小孩觉得好玩，让家长觉得有用。”</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                      <div class="timeline-stage">阶段四 · L3 线下调研 20 名同学与守护团队共识（2026 秋季）</div>
+                      <h4 class="timeline-title">课余线下访谈 20 位同学调研青少年养生，坚决制止“抓阄选题”</h4>
+                      <p class="timeline-desc">到了第 7 期（2026 秋季 L3），培西利用学校课余时间线下采访了 20 位同学调研青少年养生；当小组选题僵持不下有人提议“抓阄”时，她当场制止：“抓阄比投票还糟糕，如果大家不是打心底认同，后面一半人不会真正出力的。”</p>
+                    </div>
+                    </div>
+        </section>
+        
+        <section id="chapter-5" class="chapter-section">
+          <div class="chapter-eyebrow">第五章 · 四个成长维度、70 分基准线法则与反对“一键生成”（两场收官哲学与现场问答）</div>
+          <h2 class="chapter-title">AI 始终是 70 分基准线：工具完成的是生成，只有孩子才能完成真正的项目</h2>
+          <h3 class="subhead">一、孩子在项目中的四个成长维度与全球学术研究开放合作</h3><div class="para-block"><p>在这上千万字的课堂逐字记录中，我们从不用标准化选择题去给孩子打分，而是从四个维度观察他们真实言行与决策的变化——目前我们也正将这一长周期过程数据库向全球高校与教育研究机构开放合作：</p></div><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">维度一 · 逻辑（从碎片愿望到结构化规则）</div>
+                      <h4 class="case-title">从一句模糊的愿望，到拆解步骤、条件分支与边界规则</h4>
+                      <p class="case-body">在 AI 时代，“能不能把一件事说清楚”被前所未有地放大了。单看孩子的提示词就能看出来：他们从最初只会说一句“让我开心”，成长为自然地拆解步骤、设定条件分支与边界规则（如暖心小树洞的五条倾听铁律）。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">维度二 · 审美与品味（个性、偏见与人的温度）</div>
+                      <h4 class="case-title">“不能表现得什么都知道”与“太像 AI 拼凑的了，没有灵魂”</h4>
+                      <p class="case-body">我们说的审美不是界面漂亮，而是“个性、偏见与认知”的结合。比如孩子提出“老年陪伴智能体不能表现得什么都知道，老人不喜欢这样的陪伴”、培西嫌机器声音太冷亲自给奶奶录音、刘天澍看了一眼 AI 初稿直接说“太像 AI 拼凑的了，没有灵魂”。我自己曾连续三天花 25 个小时用 AI 开发一款把中国古诗词谱成现代流行歌的学习软件，深切体会到：AI 第一版生成出来的东西永远是平庸的，真正的品味来自不断推翻平庸结果、把人自己的生命理解倾注进每一个细节里。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">维度三 · 共情（走出自我中心，看见真实的人）</div>
+                      <h4 class="case-title">走出顺从型 AI 的回音室，直面奶奶与亲哥哥的真实拒绝</h4>
+                      <p class="case-body">因为 AI 总是顺着人说话，孩子在 AI 时代其实更容易陷入自我中心。而真实项目逼着孩子走出自我：面对奶奶试用一分钟就把手机扔下说“我不会打字”，接受亲哥哥吐槽阅读工具“好唠叨不想用”，并在团队分歧中学会妥协。共情是 PBL 产生社会价值的根源。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">维度四 · 与 AI 协作（70 分搭档，既善用又敢质疑）</div>
+                      <h4 class="case-title">卡壳时主动求助 AI，同时质疑、核实并守住自己的原意</h4>
+                      <p class="case-body">孩子到底把 AI 当成偷懒抄作业的工具，还是落地新想法的搭档？孩子们遇到卡点会主动调动 AI，但绝不盲从——他们会核实事实、防止 AI 篡改自己的语气，并在改代码时明确要求 AI“千万别改坏原本好玩的地方”。</p>
+                    </div>
+                    </div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/four_dimensions_quotes.png" alt="孩子们在“逻辑、审美、共情、与 AI 协作”四个维度上的课堂原话切片。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">孩子们在“逻辑、审美、共情、与 AI 协作”四个维度上的课堂原话切片。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/wiki_cohort_home.png" alt="烁途飞书知识库学术研究门户：沉淀超 1000 万字课堂过程数据，向全球高校与研究机构开放合作。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">烁途飞书知识库学术研究门户：沉淀超 1000 万字课堂过程数据，向全球高校与研究机构开放合作。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">二、重新定义劳动：为什么 AI 的能力“始终”是 70 分的基准线？</h3><div class="para-block"><p>为什么我们要费这么大劲培养孩子的逻辑、审美、共情与协作？因为在 AI 时代，AI 的能力始终是 70 分的基准线。很多人觉得 AI 太神了——为什么我们会觉得 AI 厉害？因为我们平时拿 AI 做的，全是我们自己不会的事！比如我不会写歌，让 AI 写一首公司年会歌，我听完觉得太棒了——这就是 70 分；但如果你把这首歌拿给周杰伦听，他大概率只会礼貌地说一句“不错哟”，想拿去获奖是绝无可能的。对不会写代码的人来说，AI 写代码像神迹；对资深技术团队来说，那就是 70 分的代码。AI 真正厉害的地方，在于它在每一个领域都是 70 分。</p></div><div class="para-block"><p>那三年之后 AI 是多少分？80 分？90 分？还是 120 分？不，始终是 70 分。这就好比海平面永远是海拔 0 米——就算全球变暖导致海平面上涨，海平面依然被定义为海拔 0 米！从早期的 GPT-3 到今天的大模型，AI 的绝对能力在暴涨，意味着 70 分的海平面在不断上涨；任何一件事，如果孩子做出来的水平不如 AI，就会被上涨的海平面直接淹没。在这个新世界里，低于 AI 70 分基准线的贡献，已经全部从“脑力劳动”降格成了“体力劳动”。过去会计给报销发票归类、秘书整理会议纪要、查基础法条都要动脑子，所以算脑力劳动；今天 AI 几秒钟就能做到 70 分。怎么判断在一件事上我们或孩子做的是智力劳动还是体力劳动？有一个极简的测试：直接把问题丢给 AI 看它的回答。如果你看完感叹“哇，太全面了，学到了！”——说明在这件事上你不到 70 分，做的是体力劳动；反过来，如果你看完第一反应是“这写的什么东西，完全没抓到重点，照这么干纯粹害人！”——恭喜你，你在这件事上处于 70 分以上，而你在 70 分以上拿出的洞察、审视与标准，才是真正的智力劳动。</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/seventy_point_baseline_1.png" alt="核心认知一：AI 的能力在所有领域始终是 70 分的海平面；随着模型升级，70 分海平面不断上涨。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">核心认知一：AI 的能力在所有领域始终是 70 分的海平面；随着模型升级，70 分海平面不断上涨。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/seventy_point_baseline_2.png" alt="核心认知二：低于 AI 70 分基准线的工作已降格为体力劳动，唯有 70 分以上的洞察、判断与取舍才是真正的智力劳动。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">核心认知二：低于 AI 70 分基准线的工作已降格为体力劳动，唯有 70 分以上的洞察、判断与取舍才是真正的智力劳动。</div>
+                        
+                      </figcaption>
+                    </figure>
+                    </div><h3 class="subhead">三、坚决反对“一键生成”：两张超 70 分的孩子手写单，以及学生、教练与 AI 的清晰分工</h3><div class="para-block"><p>这正是我们坚决反对“一键生成”的原因。来山景城之前，我自己专门做了一个实验，只跟 AI 说了两句话——第一句：“帮我做一个类似于《我的世界》的建造类小游戏，用网页实现”；发现在 iPad 上点不动后，说了第二句：“改用 iPad 触控方式操作”。就这两句话，一个能跳、能搭方块、能砸方块的 3D 网页游戏就生成出来了。试想，如果我拿着这个游戏去跟家长炫耀：“快看！这是我们带孩子用 AI 做出来的 3D 游戏！”说实话，这会让我后背发凉。在没有 AI 的时代，一个孩子如果手敲一万行代码做出这个游戏，我一定给他竖大拇指；但在今天，说两句话一键生成这个游戏是 70 分以下的事，孩子根本没动脑子。表扬这种“一键生成”，是在彻底毁掉孩子的思考能力。</p></div><div class="para-block"><p>相反，请看下方这两张孩子们在真实项目里的手写原件——这才叫“70 分以上的智力贡献”。左边是 10 岁的史丰沛在碰 AI 之前，先在纸上写下的《玩得更健康》真实用户痛点与功能取舍；右边是 9 岁的培西在做阅读项目时写的评估单——她直接追问队友：“学习规划这种东西豆包也能一键生成，我们为什么要做？”并在纸上写下了一句连很多成年人都没想透的判断：“不想读 = 态度问题，读不懂 = 能力问题，我们需要去区分开两者。”</p></div><div class="fig-grid-2">
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/fengpei_play_healthier_sheet.png" alt="10 岁史丰沛在碰 AI 前手写的《玩得更健康》需求定义与功能取舍单（飞书知识库原件）。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">10 岁史丰沛在碰 AI 前手写的《玩得更健康》需求定义与功能取舍单（飞书知识库原件）。</div>
+                        <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#fengpei" target="_blank">查看飞书知识库原件 ↗</a>
+                      </figcaption>
+                    </figure>
+                    
+                    <figure class="fig-card">
+                      <div class="fig-img-wrap">
+                        <img src="assets/figures/peixi_reading_attitude_ability.png" alt="9 岁培西手写的阅读评估单：质疑一键生成的学习规划，明确区分“不想读=态度问题，读不懂=能力问题”（飞书知识库原件）。" onclick="openLightbox(this.src)" />
+                      </div>
+                      <figcaption>
+                        <div class="cap-text">9 岁培西手写的阅读评估单：质疑一键生成的学习规划，明确区分“不想读=态度问题，读不懂=能力问题”（飞书知识库原件）。</div>
+                        <a class="wiki-inline-btn" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html#peixi-winter" target="_blank">查看飞书知识库原件 ↗</a>
+                      </figcaption>
+                    </figure>
+                    </div><div class="para-block"><p>在我们的 AI 驱动型 PBL 机构里，三者的分工极其清晰：① 学生掌握方向、审美品味与最终决定权——决定什么问题值得解决、什么是好的标准，以及团队分歧时如何取舍；② 教练守护心理安全感、团队文化与临场判断——在孩子想走捷径时追问到底，在孩子遭遇真实用户拒绝时托住情绪；③ AI 系统在后台负责按需提供跨学科知识、快速跑通 0.5 原型，并承担 80% 的过程数据整理工作。工具完成的是生成，孩子完成的才是项目。</p></div><h3 class="subhead">四、峰会现场问答精选：“开导航 vs 关导航”双轨考核、教练放手与为什么第 5 步才做用户测试</h3><div class="case-cards-grid">
+                    <div class="case-card">
+                      <div class="case-badge">现场问答一 · 当高考与升学标准还没变，学校该怎么考核？</div>
+                      <h4 class="case-title">“开 GPS 与关 GPS”双轨测试，以及“在地铁通车前十年买楼”</h4>
+                      <p class="case-body">现场有老师问：当传统升学考试还不允许用 AI 时，学校该如何评估学生？我分享了两点：第一，把评估明确拆成“关掉 GPS”（无 AI 状态下考核基础思维）和“打开 GPS”（完全放开用 AI，专门考核学生定义问题、审美取舍与交付结果是否超越了 AI 的 70 分基准线）。第二，为什么高考还没变，我们现在就要积累千万字的过程数据？就像你知道一条地铁线十年后会通车，你绝不会等通车那天再去地铁口买楼，而是在十年前就提前把地基打好。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">现场问答二 · 如何让习惯主导课堂的老师和焦虑的家长学会放手？</div>
+                      <h4 class="case-title">用客观数据当镜子（47% vs 80% 发言占比），用真实原话消除家长焦虑</h4>
+                      <p class="case-body">另一位老师问，怎么让习惯讲课的老师学会闭嘴、让焦虑的家长不再包办？对教练，我们不靠死板的 SOP 说教，而是让课后 3–5 分钟生成的《课堂复盘》充当一面客观的镜子——直接呈现本节课教练发言占比是 47% 还是 80%，以及哪句话打断了孩子的争论。对家长，焦虑源于看不见过程的“黑盒”；当家长在期末看到精确到原话的成长档案，看到孩子如何自己扛住失败、解决分歧时，家长自然就学会了放手与信任。</p>
+                    </div>
+                    
+                    <div class="case-card">
+                      <div class="case-badge">现场问答三 · 为什么“找真实用户拿反馈”放在第五步而不是第一步？</div>
+                      <h4 class="case-title">第一步从自身真痛点共识出发，第五步拿着可运行的原型直面真反馈</h4>
+                      <p class="case-body">在第二场问答中，有老师问：为什么“拿用户反馈”在第五步而不是第一步？对于 8–12 岁的孩子来说，如果第一周两手空空去采访陌生人，问出来的问题往往停留在表面。相反，第一步让他们从自己切身经历的真痛点出发达成共识，第二步调研市面已有方案；等第四步用 AI 做出能真正运行的最小原型（MVP），第五步和第六步把能玩、能用的产品交到妈妈、奶奶或陌生 NPC 手里时，真实世界给出的反馈（比如妈妈第一关就死、公园里一个也卖不出去）带来的冲击力是空口访谈的十倍，从而真正推动深度的重构与迭代。</p>
+                    </div>
+                    </div>
+        </section>
+        
+
+    <div class="footer-card">
+      <h3>把真正扎实的 PBL 带进每一个孩子的学习里</h3>
+      <p>李睿（Rui Li）· 烁途（MarsNavi）创始人 · 欢迎全球学校与高校开展课程及学术数据合作<br/>联系邮箱：<strong>lrmarsnavi@gmail.com</strong> · 官网：<strong>marsnavi.com</strong></p>
+      <div class="resource-bar" style="justify-content:center;">
+        
+        <a class="res-btn primary" href="downloads/marsnavi-feishu-wiki-2026-summer-en.html" target="_blank">
+          打开飞书知识库原件 ↗
+        </a>
+        <a class="res-btn secondary" href="mailto:lrmarsnavi@gmail.com">
+          发送邮件联系李睿 (lrmarsnavi@gmail.com)
+        </a>
+        
+      </div>
+    </div>
+  </main>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Expanded view" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
